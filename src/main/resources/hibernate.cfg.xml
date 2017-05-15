@@ -7,11 +7,14 @@
     <session-factory>
         <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
         <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:</property>
+        <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
         <property name="hibernate.connection.username">adkdb</property>
         <property name="hibernate.connection.password">admin</property>
-        <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hbm2ddl.auto">create</property>
+
+        <mapping resource="com.epam.adk.web.news.model/News.hbm.xml"/>
+
     </session-factory>
 
 </hibernate-configuration>

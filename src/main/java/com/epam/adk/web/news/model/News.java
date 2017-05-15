@@ -65,4 +65,5 @@ public class News extends BaseEntity {
     public void setContent(String content) {
         this.content = content;
     }
+
 }
