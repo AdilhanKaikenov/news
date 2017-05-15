@@ -7,4 +7,6 @@ package com.epam.adk.web.news.model;
  * @author Kaikenov Adilkhan
  */
 public abstract class BaseEntity {
+
+
 }
