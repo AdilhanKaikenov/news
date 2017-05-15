@@ -31,7 +31,6 @@
         <!-- Junit -->
         <junit.version>4.12</junit.version>
         <!--JDBC Driver-->
-        <!--<postgresql.version>9.4.1212.jre6</postgresql.version>-->
         <ojdbc6.version>11.2.0.3</ojdbc6.version>
         <!--Logger-->
         <slf4j.version>1.7.20</slf4j.version>
@@ -46,13 +45,6 @@
             <artifactId>ojdbc6</artifactId>
             <version>${ojdbc6.version}</version>
         </dependency>
-
-        <!--&lt;!&ndash; Postgresql JDBC driver&ndash;&gt;-->
-        <!--<dependency>-->
-        <!--<groupId>org.postgresql</groupId>-->
-        <!--<artifactId>postgresql</artifactId>-->
-        <!--<version>${postgresql.version}</version>-->
-        <!--</dependency>-->
 
         <!-- Java EE-->
         <dependency>
