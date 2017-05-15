@@ -5,9 +5,13 @@
 
 <struts-config>
 
+    <action-mappings>
+        <action path="/welcome"/>
+    </action-mappings>
+
     <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
 
-    <!--<message-resources parameter=""/>-->
+    <message-resources parameter="i18n"/>
 
     <plug-in className="org.apache.struts.tiles.TilesPlugin">
         <set-property value="/WEB-INF/config/tiles-defs.xml" property="definitions-config"/>
