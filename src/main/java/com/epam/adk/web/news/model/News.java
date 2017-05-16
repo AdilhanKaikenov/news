@@ -26,7 +26,7 @@ public class News extends BaseEntity {
         this.content = content;
     }
 
-    public News(long id, String title, Date date, String brief, String content) {
+    public News(int id, String title, Date date, String brief, String content) {
         super(id);
         this.title = title;
         this.date = date;

@@ -9,20 +9,20 @@ package com.epam.adk.web.news.model;
  */
 public abstract class BaseEntity {
 
-    private long id;
+    private int id;
 
     public BaseEntity() {
     }
 
-    public BaseEntity(long id) {
+    public BaseEntity(int id) {
         this.id = id;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -38,6 +38,6 @@ public abstract class BaseEntity {
 
     @Override
     public int hashCode() {
-        return (int) (id ^ (id >>> 32));
+        return id;
     }
 }
