@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class DeleteNewsAction extends Action {
 
     private static final String SUCCESS = "success";
-    private static final String ID = "id";
+    private static final String ID_PARAMETER = "id";
 
     @Autowired
     private NewsService newsService;
@@ -28,7 +28,7 @@ public class DeleteNewsAction extends Action {
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String[] ids = request.getParameterValues(ID);
+        String[] ids = request.getParameterValues(ID_PARAMETER);
 
         for (int i = 0; i < ids.length; i++) {
             newsService.deleteNews(Integer.parseInt(ids[i]));

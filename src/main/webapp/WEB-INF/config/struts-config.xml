@@ -13,12 +13,14 @@
 
         <action path="/NewsList"
                 type="com.epam.adk.web.news.action.ShowNewsListAction">
-
             <forward name="success" path="/WEB-INF/templates/pages/welcome.jsp"/>
         </action>
         <action path="/DeleteNews"
                 type="com.epam.adk.web.news.action.DeleteNewsAction">
-
+            <forward name="success" path="/NewsList.do" redirect="true"/>
+        </action>
+        <action path="/SelectLanguage"
+                type="com.epam.adk.web.news.action.SelectLanguageAction">
             <forward name="success" path="/NewsList.do" redirect="true"/>
         </action>
 

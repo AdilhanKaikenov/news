@@ -12,7 +12,7 @@
         News Management
     </div>
     <div class="header-languages-ref">
-        <a href="">English</a>
-        <a href="">Russian</a>
+        <a href="${base}/SelectLanguage.do?region=en">English</a>
+        <a href="${base}/SelectLanguage.do?region=ru">Russian</a>
     </div>
 </div>
