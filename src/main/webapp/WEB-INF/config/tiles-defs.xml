@@ -5,5 +5,11 @@
         "http://struts.apache.org/dtds/tiles-config_1_1.dtd">
 
 <tiles-definitions>
-    <definition name="example"/>
+    <definition name="base.layout" page="/WEB-INF/templates/base-layout.jsp">
+        <put name="header" value="/WEB-INF/templates/titles/header.jsp"/>
+        <put name="title" value="Title"/>
+        <put name="body" value="/WEB-INF/templates/titles/body.jsp"/>
+        <put name="menu" value="/WEB-INF/templates/titles/menu.jsp"/>
+        <put name="footer" value="/WEB-INF/templates/titles/footer.jsp"/>
+    </definition>
 </tiles-definitions>
