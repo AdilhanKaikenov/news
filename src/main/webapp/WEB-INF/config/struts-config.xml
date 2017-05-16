@@ -5,21 +5,42 @@
 
 <struts-config>
 
+    <form-beans>
+        <!--Form bean-->
+    </form-beans>
+
     <action-mappings>
-        <action path="/welcome"/>
+
+        <action path="/NewsList"
+                type="com.epam.adk.web.news.action.ShowNewsListAction">
+
+            <forward name="success" path="/WEB-INF/templates/pages/welcome.jsp"/>
+        </action>
+        <action path="/deleteNews"/>
+        <action path="/viewNews"/>
+        <action path="/editNews"/>
+
     </action-mappings>
 
-    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+    <controller processorClass="org.springframework.web.struts.DelegatingTilesRequestProcessor"/>
 
     <message-resources parameter="i18n"/>
 
+    <!-- Tiles plugin -->
     <plug-in className="org.apache.struts.tiles.TilesPlugin">
         <set-property value="/WEB-INF/config/tiles-defs.xml" property="definitions-config"/>
     </plug-in>
 
+    <!-- Struts validator -->
     <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
         <set-property value="/org/apache/struts/validator/validator-rules.xml,/WEB-INF/config/validation.xml"
                       property="pathnames"/>
+    </plug-in>
+
+    <!-- Spring + Struts plugin -->
+    <plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+        <set-property property="contextConfigLocation"
+                      value="classpath:spring-context.xml, classpath:action-servlet.xml"/>
     </plug-in>
 
 </struts-config>

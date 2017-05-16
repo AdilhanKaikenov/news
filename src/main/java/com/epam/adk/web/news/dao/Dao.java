@@ -2,6 +2,8 @@ package com.epam.adk.web.news.dao;
 
 import com.epam.adk.web.news.model.BaseEntity;
 
+import java.util.List;
+
 /**
  * TODO: Comment
  * <p>
@@ -11,6 +13,8 @@ import com.epam.adk.web.news.model.BaseEntity;
  */
 public interface Dao<T extends BaseEntity> {
 
+    int add(T t);
 
+    List<T> findAll();
 
 }

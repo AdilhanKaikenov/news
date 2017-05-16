@@ -4,3 +4,10 @@
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
+<div class="footer">
+    <div class="footer-inscription">
+        Copyright EPAM 2017. All rights reserved.
+    </div>
+</div>

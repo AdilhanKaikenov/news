@@ -11,5 +11,6 @@
 </head>
 <body>
 Have a nice day!
+<a href="${pageContext.request.contextPath}/NewsList.do">NewsListAction</a>
 </body>
 </html>

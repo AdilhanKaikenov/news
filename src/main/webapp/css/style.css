@@ -1,0 +1,90 @@
+.menu-section {
+    height: 150px;
+    width: 220px;
+    background: gainsboro;
+    padding: 10px;
+    float: left;
+}
+
+.menu-header {
+    height: 35px;
+    width: 200px;
+    background: black;
+    color: aliceblue;
+    text-align: center;
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+.menu_references {
+    height: 70px;
+    width: 200px;
+    background: aliceblue;
+    text-align: center;
+    padding-left: 15px;
+}
+
+.header {
+    padding: 20px;
+    background: grey;
+    height: 65px;
+}
+
+.header-inscription {
+    font-size: 40px;
+}
+
+.header-languages-ref {
+    float: right;
+}
+
+.content {
+    border: black solid 1px;
+    min-height: 400px;
+    width: 1270px;
+    margin: 10px;
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.footer {
+    height: 30px;
+    width: 1895px;
+    background: cadetblue;
+    text-align: center;
+}
+
+.footer-inscription {
+    padding: 5px;
+}
+
+.news-section {
+    background-color: ghostwhite;
+    margin: 20px;
+}
+
+.title-section {
+    margin: 5px;
+    /*float: left;*/
+    font-weight: bold;
+}
+
+.date-section {
+    margin: 5px;
+    clear: right;
+    float: right;
+}
+
+.brief-section {
+    clear: right;
+    margin: 5px;
+}
+
+.links-and-other-section {
+    margin: 10px auto;
+    padding-left: 90%;
+}
+
+.delete-button-section {
+    padding-left: 90%;
+}

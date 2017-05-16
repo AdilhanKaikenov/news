@@ -5,11 +5,20 @@
         "http://struts.apache.org/dtds/tiles-config_1_1.dtd">
 
 <tiles-definitions>
+
+    <definition name="header" page="/WEB-INF/templates/titles/header.jsp"/>
+    <definition name="menu" page="/WEB-INF/templates/titles/menu.jsp"/>
+    <definition name="footer" page="/WEB-INF/templates/titles/footer.jsp"/>
+
     <definition name="base.layout" page="/WEB-INF/templates/base-layout.jsp">
-        <put name="header" value="/WEB-INF/templates/titles/header.jsp"/>
+        <put name="header" value="header"/>
         <put name="title" value="Title"/>
         <put name="body" value="/WEB-INF/templates/titles/body.jsp"/>
-        <put name="menu" value="/WEB-INF/templates/titles/menu.jsp"/>
-        <put name="footer" value="/WEB-INF/templates/titles/footer.jsp"/>
+        <put name="menu" value="menu"/>
+        <put name="footer" value="footer"/>
     </definition>
+
+    <!--Bodies-->
+    <definition name="news.list" page="/WEB-INF/templates/bodies/news-list-body.jsp"/>
+
 </tiles-definitions>
