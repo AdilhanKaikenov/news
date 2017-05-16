@@ -13,7 +13,7 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hbm2ddl.auto">create</property>
 
-        <mapping resource="com.epam.adk.web.news.model/News.hbm.xml"/>
+        <mapping resource="com/epam/adk/web/news/News.hbm.xml"/>
 
     </session-factory>
 
