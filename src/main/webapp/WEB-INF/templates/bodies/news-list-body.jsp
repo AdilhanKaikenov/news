@@ -7,7 +7,7 @@
 
 <c:set value="${pageContext.request.contextPath}" var="base"/>
 
-<form action="${base}/deleteNews.do" method="post">
+<form action="${base}/DeleteNews.do" method="post">
     <%--@elvariable id="newsList" type="java.util.List"--%>
     <c:forEach items="${newsList}" var="news">
         <%--@elvariable id="news" type="com.epam.adk.news.model.News"--%>

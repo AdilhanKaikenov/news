@@ -4,6 +4,7 @@ import com.epam.adk.web.news.dao.NewsDao;
 import com.epam.adk.web.news.model.News;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,4 +29,9 @@ public class NewsService {
         return newsDao.findAll();
     }
 
+    @Transactional
+    public void deleteNews(int id) {
+        News news = newsDao.read(id);
+        newsDao.delete(news);
+    }
 }

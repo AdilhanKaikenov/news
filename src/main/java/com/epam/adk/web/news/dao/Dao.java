@@ -13,8 +13,12 @@ import java.util.List;
  */
 public interface Dao<T extends BaseEntity> {
 
+    T read(int id);
+
     int add(T t);
 
     List<T> findAll();
+
+    void delete(T t);
 
 }

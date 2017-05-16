@@ -16,7 +16,12 @@
 
             <forward name="success" path="/WEB-INF/templates/pages/welcome.jsp"/>
         </action>
-        <action path="/deleteNews"/>
+        <action path="/DeleteNews"
+                type="com.epam.adk.web.news.action.DeleteNewsAction">
+
+            <forward name="success" path="/NewsList.do" redirect="true"/>
+        </action>
+
         <action path="/viewNews"/>
         <action path="/editNews"/>
 

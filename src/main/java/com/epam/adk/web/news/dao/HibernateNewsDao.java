@@ -34,6 +34,11 @@ public class HibernateNewsDao implements NewsDao {
         this.hibernateTemplate = hibernateTemplate;
     }
 
+    @Override
+    public News read(int id) {
+        return hibernateTemplate.get(News.class, id);
+    }
+
     @Transactional
     @Override
     public int add(News news) {
@@ -43,5 +48,10 @@ public class HibernateNewsDao implements NewsDao {
     @Override
     public List<News> findAll() {
         return hibernateTemplate.loadAll(News.class);
+    }
+
+    @Override
+    public void delete(News news) {
+        hibernateTemplate.delete(news);
     }
 }
