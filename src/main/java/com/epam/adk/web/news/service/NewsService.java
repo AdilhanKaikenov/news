@@ -21,6 +21,10 @@ public class NewsService {
     @Autowired
     private NewsDao newsDao;
 
+    public News readNews(int id) {
+        return newsDao.read(id);
+    }
+
     public int addNews(News news) {
         return newsDao.add(news);
     }

@@ -24,11 +24,14 @@
             <forward name="success" path="/NewsList.do" redirect="true"/>
         </action>
 
-        <action path="/viewNews"/>
+        <action path="/ViewNews" type="com.epam.adk.web.news.action.ViewNewsAction">
+            <forward name="success" path="/WEB-INF/templates/pages/news-view.jsp"/>
+        </action>
         <action path="/editNews"/>
 
     </action-mappings>
 
+    <!--RequestProcessor class-->
     <controller processorClass="org.springframework.web.struts.DelegatingTilesRequestProcessor"/>
 
     <message-resources parameter="i18n"/>

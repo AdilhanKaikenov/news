@@ -20,5 +20,6 @@
 
     <!--Bodies-->
     <definition name="news.list" page="/WEB-INF/templates/bodies/news-list-body.jsp"/>
+    <definition name="news.view" page="/WEB-INF/templates/bodies/news-view-body.jsp"/>
 
 </tiles-definitions>

@@ -16,15 +16,17 @@
             <div class="date-section"><ftm:formatDate value="${news.date}"/></div>
             <div class="brief-section">${news.brief}</div>
             <div class="links-and-other-section">
-                <a href=""><bean:message key="link.label.view"/></a>
-                <a href=""><bean:message key="link.label.edit"/></a>
+                <button><a href="${base}/ViewNews.do?id=${news.id}"><bean:message key="link.label.view"/></a></button>
+                <button><a href=""><bean:message key="link.label.edit"/></a></button>
                 <label>
                     <input type="checkbox" name="id" value="${news.id}">
                 </label>
             </div>
         </div>
     </c:forEach>
-    <div class="delete-button-section">
-        <button type="submit"><bean:message key="delete.label.button.submit"/></button>
-    </div>
+    <c:if test="${not empty newsList}">
+        <div class="delete-button-section">
+            <button type="submit"><bean:message key="delete.label.button.submit"/></button>
+        </div>
+    </c:if>
 </form>

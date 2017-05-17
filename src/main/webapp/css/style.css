@@ -1,3 +1,7 @@
+a {
+    text-decoration: none;
+}
+
 .menu-section {
     height: 150px;
     width: 220px;
@@ -82,9 +86,20 @@
 
 .links-and-other-section {
     margin: 10px auto;
-    padding-left: 90%;
+    padding-left: 80%;
 }
 
 .delete-button-section {
     padding-left: 90%;
+}
+
+.news-view-table {
+    margin: 15px;
+    margin-right: 570px;
+    text-align: justify;
+}
+
+.view-button-section {
+    float: right;
+    margin-right: 600px;
 }

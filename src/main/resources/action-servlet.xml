@@ -6,5 +6,6 @@
 
     <bean name="/NewsList" class="com.epam.adk.web.news.action.ShowNewsListAction"/>
     <bean name="/DeleteNews" class="com.epam.adk.web.news.action.DeleteNewsAction"/>
+    <bean name="/ViewNews" class="com.epam.adk.web.news.action.ViewNewsAction"/>
 
 </beans>
