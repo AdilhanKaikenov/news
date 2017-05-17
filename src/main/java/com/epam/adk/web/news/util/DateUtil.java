@@ -1,5 +1,8 @@
 package com.epam.adk.web.news.util;
 
+import com.epam.adk.web.news.exception.DateParsingException;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -19,5 +22,16 @@ public class DateUtil {
     public static String parseDateToString(Date date, Locale locale) {
         simpleDateFormat = new SimpleDateFormat(DATE_PATTERN, locale);
         return simpleDateFormat.format(date);
+    }
+
+    public static Date parseStringToDate(String source) throws DateParsingException {
+        Date date;
+        simpleDateFormat = new SimpleDateFormat(DATE_PATTERN);
+        try {
+            date = simpleDateFormat.parse(source);
+        } catch (ParseException e) {
+            throw new DateParsingException(e);
+        }
+        return date;
     }
 }

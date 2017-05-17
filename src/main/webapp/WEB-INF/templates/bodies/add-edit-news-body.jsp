@@ -10,6 +10,7 @@
 
 <html:form action="/AddEditNews">
     <html:errors/>
+    <html:hidden property="news.id"/>
     <table class="news-view-table" cellspacing="20px">
         <tr>
             <th><bean:message key="news.label.title"/></th>
@@ -30,7 +31,9 @@
     </table>
     <div class="view-button-section">
         <html:submit><bean:message key="add.edit.label.save.button.submit"/></html:submit>
-        <button><bean:message key="add.edit.label.cancel.button"/></button>
+        <button property="news" onclick="history.back()">
+            <bean:message key="add.edit.label.cancel.button"/>
+        </button>
     </div>
 </html:form>
 

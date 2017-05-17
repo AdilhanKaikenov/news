@@ -12,7 +12,7 @@
         News Management
     </div>
     <div class="header-languages-ref">
-        <a href="${base}/SelectLanguage.do?region=en">English</a>
-        <a href="${base}/SelectLanguage.do?region=ru">Russian</a>
+        <a href="${base}/SelectLanguage.do?region=en"><bean:message key="link.label.english"/></a>
+        <a href="${base}/SelectLanguage.do?region=ru"><bean:message key="link.label.russian"/></a>
     </div>
 </div>

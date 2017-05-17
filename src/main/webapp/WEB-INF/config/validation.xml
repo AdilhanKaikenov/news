@@ -8,7 +8,7 @@
 
     <formset>
         <form name="NewsForm">
-            <field property="news.title">
+            <field property="news.title" depends="required, maxlength">
                 <msg name="required" key="err.news.title.required"/>
                 <msg name="maxlength" key="err.news.title.maxlenght"/>
 

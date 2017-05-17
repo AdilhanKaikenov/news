@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * TODO: Comment
- *
+ * <p>
  * Created on 5/15/2017.
  *
  * @author Kaikenov Adilkhan
@@ -26,7 +26,11 @@ public class NewsService {
     }
 
     public int addNews(News news) {
-        return newsDao.add(news);
+        return newsDao.save(news);
+    }
+
+    public void addOrEditNews(News news) {
+        newsDao.saveOrUpdate(news);
     }
 
     public List<News> readAllNews() {

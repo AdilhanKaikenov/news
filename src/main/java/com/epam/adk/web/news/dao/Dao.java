@@ -15,7 +15,9 @@ public interface Dao<T extends BaseEntity> {
 
     T read(int id);
 
-    int add(T t);
+    int save(T t);
+
+    void saveOrUpdate(T t);
 
     List<T> findAll();
 

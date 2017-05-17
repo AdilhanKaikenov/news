@@ -17,7 +17,8 @@
             <div class="brief-section">${news.brief}</div>
             <div class="links-and-other-section">
                 <button><a href="${base}/ViewNews.do?id=${news.id}"><bean:message key="link.label.view"/></a></button>
-                <button><a href="${base}/ShowPage.do?method=showNewsForm&id=${news.id}"><bean:message key="link.label.edit"/></a></button>
+                <button><a href="${base}/ShowPage.do?method=showNewsForm&id=${news.id}"><bean:message
+                        key="link.label.edit"/></a></button>
                 <label>
                     <input type="checkbox" name="id" value="${news.id}">
                 </label>
@@ -26,7 +27,8 @@
     </c:forEach>
     <c:if test="${not empty newsList}">
         <div class="delete-button-section">
-            <button type="submit"><bean:message key="delete.label.button.submit"/></button>
+            <button type="submit" onclick="confirm('<bean:message key="confirm.message.delete.newslist"/>')">
+                <bean:message key="delete.label.button.submit"/></button>
         </div>
     </c:if>
 </form>

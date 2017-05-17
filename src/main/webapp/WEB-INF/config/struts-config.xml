@@ -40,8 +40,10 @@
                 name="NewsForm"
                 scope="request"
                 validate="true"
-                input="/WEB-INF/templates/pages/add-edit-news.jsp"
-        />
+                input="/WEB-INF/templates/pages/add-edit-news.jsp">
+            <forward name="success" path="/NewsList.do" redirect="true"/>
+        </action>
+
 
     </action-mappings>
 

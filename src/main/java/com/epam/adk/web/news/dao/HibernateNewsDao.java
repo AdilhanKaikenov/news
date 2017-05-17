@@ -41,8 +41,14 @@ public class HibernateNewsDao implements NewsDao {
 
     @Transactional
     @Override
-    public int add(News news) {
+    public int save(News news) {
         return (int) hibernateTemplate.save(news);
+    }
+
+    @Transactional
+    @Override
+    public void saveOrUpdate(News news) {
+        hibernateTemplate.saveOrUpdate(news);
     }
 
     @Override
