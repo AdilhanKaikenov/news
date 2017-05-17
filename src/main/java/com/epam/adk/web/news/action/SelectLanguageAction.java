@@ -36,7 +36,8 @@ public class SelectLanguageAction extends Action {
 
     private ActionForward getCurrentPage(ActionMapping mapping, HttpServletRequest request) {
         String referer = request.getHeader(REFERER);
-        ActionForward actionForward = new ActionForward(referer, true);
+        boolean isRedirect = true;
+        ActionForward actionForward = new ActionForward(referer, isRedirect);
         if (referer == null) {
             return mapping.findForward(SUCCESS);
         }

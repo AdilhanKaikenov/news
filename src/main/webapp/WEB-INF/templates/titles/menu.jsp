@@ -13,7 +13,7 @@
     </div>
 
     <div class="menu_references">
-        <br><a href=""><bean:message key="link.menu.label.addnews"/></a>
+        <br><a href="${base}/ShowPage.do?method=showNewsForm"><bean:message key="link.menu.label.addnews"/></a>
         <br><a href="${base}/NewsList.do"><bean:message key="link.menu.label.newslist"/></a>
     </div>
 </div>

@@ -21,5 +21,6 @@
     <!--Bodies-->
     <definition name="news.list" page="/WEB-INF/templates/bodies/news-list-body.jsp"/>
     <definition name="news.view" page="/WEB-INF/templates/bodies/news-view-body.jsp"/>
+    <definition name="news.edit" page="/WEB-INF/templates/bodies/add-edit-news-body.jsp"/>
 
 </tiles-definitions>

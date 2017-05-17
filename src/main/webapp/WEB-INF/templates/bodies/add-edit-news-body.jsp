@@ -8,35 +8,30 @@
 
 <c:set value="${pageContext.request.contextPath}" var="base"/>
 
-<%--@elvariable id="news" type="com.epam.adk.news.model.News"--%>
-
-<form action="${base}/DeleteNews.do" method="post">
-    <input type="hidden" name="id" value="${news.id}">
-
+<html:form action="/AddEditNews">
+    <html:errors/>
     <table class="news-view-table" cellspacing="20px">
         <tr>
             <th><bean:message key="news.label.title"/></th>
-            <td>${news.title}</td>
+            <td><html:text property="news.title"/></td>
         </tr>
         <tr>
             <th><bean:message key="news.label.date"/></th>
-            <td><ftm:formatDate value="${news.date}"/></td>
+            <td><html:text property="strDate" readonly="true"/></td>
         </tr>
         <tr>
             <th><bean:message key="news.label.brief"/></th>
-            <td>${news.brief}</td>
+            <td><html:textarea property="news.brief" cols="100" rows="4"/></td>
         </tr>
         <tr>
             <th><bean:message key="news.label.content"/></th>
-            <td>${news.content}</td>
+            <td><html:textarea property="news.content" cols="100" rows="6"/></td>
         </tr>
     </table>
     <div class="view-button-section">
-        <button><a href="${base}/ShowPage.do?method=showNewsForm&id=${news.id}"><bean:message key="link.label.edit"/></a></button>
-        <button type="submit"><bean:message key="delete.label.button.submit"/></button>
+        <html:submit><bean:message key="add.edit.label.save.button.submit"/></html:submit>
+        <button><bean:message key="add.edit.label.cancel.button"/></button>
     </div>
-</form>
-
-
+</html:form>
 
 

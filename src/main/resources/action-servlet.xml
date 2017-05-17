@@ -4,8 +4,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean name="/NewsList" class="com.epam.adk.web.news.action.ShowNewsListAction"/>
     <bean name="/DeleteNews" class="com.epam.adk.web.news.action.DeleteNewsAction"/>
+    <bean name="/NewsList" class="com.epam.adk.web.news.action.ShowNewsListAction"/>
     <bean name="/ViewNews" class="com.epam.adk.web.news.action.ViewNewsAction"/>
+    <bean name="/ShowPage" class="com.epam.adk.web.news.action.ShowPageAction"/>
 
 </beans>

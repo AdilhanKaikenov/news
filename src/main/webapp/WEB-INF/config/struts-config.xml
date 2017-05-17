@@ -6,7 +6,7 @@
 <struts-config>
 
     <form-beans>
-        <!--Form bean-->
+        <form-bean name="NewsForm" type="com.epam.adk.web.news.form.NewsForm"/>
     </form-beans>
 
     <action-mappings>
@@ -23,11 +23,25 @@
                 type="com.epam.adk.web.news.action.SelectLanguageAction">
             <forward name="success" path="/NewsList.do" redirect="true"/>
         </action>
-
         <action path="/ViewNews" type="com.epam.adk.web.news.action.ViewNewsAction">
             <forward name="success" path="/WEB-INF/templates/pages/news-view.jsp"/>
         </action>
-        <action path="/editNews"/>
+        <action path="/ShowPage"
+                type="com.epam.adk.web.news.action.ShowPageAction"
+                parameter="method"
+                name="NewsForm"
+                validate="false"
+                scope="request"
+        >
+            <forward name="show_add_or_edit_success" path="/WEB-INF/templates/pages/add-edit-news.jsp"/>
+        </action>
+        <action path="/AddEditNews"
+                type="com.epam.adk.web.news.action.AddEditAction"
+                name="NewsForm"
+                scope="request"
+                validate="true"
+                input="/WEB-INF/templates/pages/add-edit-news.jsp"
+        />
 
     </action-mappings>
 

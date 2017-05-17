@@ -17,7 +17,7 @@
             <div class="brief-section">${news.brief}</div>
             <div class="links-and-other-section">
                 <button><a href="${base}/ViewNews.do?id=${news.id}"><bean:message key="link.label.view"/></a></button>
-                <button><a href=""><bean:message key="link.label.edit"/></a></button>
+                <button><a href="${base}/ShowPage.do?method=showNewsForm&id=${news.id}"><bean:message key="link.label.edit"/></a></button>
                 <label>
                     <input type="checkbox" name="id" value="${news.id}">
                 </label>
