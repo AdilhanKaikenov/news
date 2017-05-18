@@ -5,7 +5,6 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean name="/DeleteNews" class="com.epam.adk.web.news.action.DeleteNewsAction"/>
-    <bean name="/ViewNews" class="com.epam.adk.web.news.action.ViewNewsAction"/>
     <bean name="/ShowPage" class="com.epam.adk.web.news.action.ShowPageAction"/>
     <bean name="/AddEditNews" class="com.epam.adk.web.news.action.AddEditAction"/>
 

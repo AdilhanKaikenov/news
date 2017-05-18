@@ -49,6 +49,10 @@
                 </var>
             </field>
 
+            <field property="selectedNewsIds" depends="required">
+                <msg key="errors.news.not.selected" name="required"/>
+            </field>
+
         </form>
     </formset>
 

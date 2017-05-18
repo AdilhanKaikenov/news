@@ -8,38 +8,46 @@
 
 <c:set value="${pageContext.request.contextPath}" var="base"/>
 
-<ftm:setBundle basename="i18n"/>
+<html:form action="/DeleteNews.do" method="post">
 
-<%--@elvariable id="news" type="com.epam.adk.news.model.News"--%>
-<form action="${base}/DeleteNews.do" method="post">
-    <input type="hidden" name="id" value="${news.id}">
+    <html:hidden property="selectedNewsIds" value="${news.id}"/>
+    <html:hidden property="news.title" value="pass_validation"/>
+    <html:hidden property="news.brief" value="pass_validation"/>
+    <html:hidden property="news.content" value="pass_validation"/>
 
     <table class="news-view-table" cellspacing="20px">
         <tr>
             <th><bean:message key="news.label.title"/></th>
-            <td>${news.title}</td>
+            <td><bean:write name="NewsForm" property="news.title"/></td>
         </tr>
         <tr>
             <th><bean:message key="news.label.date"/></th>
-            <td><ftm:formatDate value="${news.date}"/></td>
+                <td><bean:write name="NewsForm" property="strDate" format="dd/MM/yyyy/"/></td>
         </tr>
         <tr>
             <th><bean:message key="news.label.brief"/></th>
-            <td>${news.brief}</td>
+            <td><bean:write name="NewsForm" property="news.brief"/></td>
         </tr>
         <tr>
             <th><bean:message key="news.label.content"/></th>
-            <td>${news.content}</td>
+            <td><bean:write name="NewsForm" property="news.content"/></td>
         </tr>
     </table>
     <div class="view-button-section">
-        <button><a href="${base}/ShowPage.do?method=showNewsForm&id=${news.id}"><bean:message
-                key="link.label.edit"/></a></button>
-        <button type="submit" onclick="return confirm('<bean:message key="confirm.message.delete.news"/>')"><bean:message
-                key="delete.label.button.submit"/></button>
-    </div>
-</form>
+            <%--@elvariable id="news" type="com.epam.adk.web.news.model.News"--%>
+        <button><html:link action="/ShowPage.do?method=showNewsForm&id=${news.id}"><bean:message
+                key="link.label.edit"/></html:link></button>
+        <html:submit onclick="return deleteNewsList()"><bean:message
+                key="delete.label.button.submit"/></html:submit>
 
+        <script type="text/javascript">
+            function deleteNewsList() {
+                return window.confirm('<bean:message key="confirm.message.delete.newslist"/>');
+            }
+        </script>
+    </div>
+
+</html:form>
 
 
 

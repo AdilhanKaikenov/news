@@ -3,6 +3,9 @@ package com.epam.adk.web.news.form;
 import com.epam.adk.web.news.model.News;
 import org.apache.struts.validator.ValidatorForm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * TODO: Comment
  * <p>
@@ -13,7 +16,9 @@ import org.apache.struts.validator.ValidatorForm;
 public class NewsForm extends ValidatorForm {
 
     private News news = new News();
+    private List<News> newsList = new ArrayList<>();
     private String strDate;
+    private int[] selectedNewsIds;
 
     public NewsForm() {
     }
@@ -32,5 +37,21 @@ public class NewsForm extends ValidatorForm {
 
     public void setStrDate(String strDate) {
         this.strDate = strDate;
+    }
+
+    public List<News> getNewsList() {
+        return newsList;
+    }
+
+    public void setNewsList(List<News> newsList) {
+        this.newsList = newsList;
+    }
+
+    public int[] getSelectedNewsIds() {
+        return selectedNewsIds;
+    }
+
+    public void setSelectedNewsIds(int[] selectedNewsIds) {
+        this.selectedNewsIds = selectedNewsIds;
     }
 }

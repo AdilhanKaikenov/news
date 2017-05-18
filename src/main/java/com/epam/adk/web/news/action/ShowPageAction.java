@@ -30,13 +30,10 @@ public class ShowPageAction extends DispatchAction {
     private NewsService newsService;
 
     public ActionForward showNewsForm(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-
         NewsForm newsForm = (NewsForm) form;
         String id = request.getParameter(ID_PARAMETER);
         if (id != null) {
-            News news = newsService.readNews(Integer.parseInt(id));
-            newsForm.setNews(news);
-            newsForm.setStrDate(DateUtil.parseDateToString(news.getDate(), request.getLocale()));
+            createNewsForm(request, newsForm, id);
         } else {
             newsForm.setStrDate(DateUtil.parseDateToString(new Date(), request.getLocale()));
         }
@@ -44,9 +41,23 @@ public class ShowPageAction extends DispatchAction {
     }
 
     public ActionForward showNewsList(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-
         List<News> newsList = newsService.readAllNews();
-        request.setAttribute(NEWS_LIST, newsList);
+        NewsForm newsForm = (NewsForm) form;
+        newsForm.setNewsList(newsList);
         return mapping.findForward(SHOW_NEWS_LIST_SUCCESS);
+    }
+
+    public ActionForward showViewNews(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String id = request.getParameter(ID_PARAMETER);
+        NewsForm newsForm = (NewsForm) form;
+        createNewsForm(request, newsForm, id);
+        return mapping.findForward(SHOW_VIEW_NEWS_SUCCESS);
+    }
+
+    private void createNewsForm(HttpServletRequest request, NewsForm newsForm, String id) {
+        News news = newsService.readNews(Integer.parseInt(id));
+        newsForm.setNews(news);
+        newsForm.setStrDate(DateUtil.parseDateToString(news.getDate(), request.getLocale()));
+        request.setAttribute(NEWS, news);
     }
 }

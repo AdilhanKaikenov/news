@@ -7,28 +7,41 @@
 
 <c:set value="${pageContext.request.contextPath}" var="base"/>
 
-<form action="${base}/DeleteNews.do" method="post">
-    <%--@elvariable id="newsList" type="java.util.List"--%>
-    <c:forEach items="${newsList}" var="news">
-        <%--@elvariable id="news" type="com.epam.adk.news.model.News"--%>
+<html:form action="/DeleteNews.do" method="post">
+    <div class="form-error-section">
+        <html:errors/>
+    </div>
+    <html:hidden property="news.id"/>
+    <html:hidden property="news.title" value="pass_validation"/>
+    <html:hidden property="news.brief" value="pass_validation"/>
+    <html:hidden property="news.content" value="pass_validation"/>
+
+    <logic:iterate id="news" name="NewsForm" property="newsList">
+
         <div class="news-section">
             <div class="title-section">${news.title}</div>
             <div class="date-section"><ftm:formatDate value="${news.date}"/></div>
             <div class="brief-section">${news.brief}</div>
             <div class="links-and-other-section">
-                <button><a href="${base}/ViewNews.do?id=${news.id}"><bean:message key="link.label.view"/></a></button>
-                <button><a href="${base}/ShowPage.do?method=showNewsForm&id=${news.id}"><bean:message
-                        key="link.label.edit"/></a></button>
-                <label>
-                    <input type="checkbox" name="id" value="${news.id}">
-                </label>
+                <button><html:link action="/ShowPage.do?method=showViewNews&id=${news.id}"><bean:message
+                        key="link.label.view"/></html:link></button>
+                <button><html:link action="/ShowPage.do?method=showNewsForm&id=${news.id}"><bean:message
+                        key="link.label.edit"/></html:link></button>
+                <html:multibox property="selectedNewsIds" value="${news.id}"/>
             </div>
         </div>
-    </c:forEach>
-    <c:if test="${not empty newsList}">
-        <div class="delete-button-section">
-            <button type="submit" onclick="return confirm('<bean:message key="confirm.message.delete.newslist"/>')">
-                <bean:message key="delete.label.button.submit"/></button>
-        </div>
-    </c:if>
-</form>
+
+    </logic:iterate>
+    <div class="delete-button-section">
+
+        <logic:notEmpty name="NewsForm" property="newsList">
+            <html:submit onclick="return deleteNewsList()"><bean:message key="delete.label.button.submit"/></html:submit>
+        </logic:notEmpty>
+
+        <script type="text/javascript">
+            function deleteNewsList() {
+                return window.confirm('<bean:message key="confirm.message.delete.newslist"/>');
+            }
+        </script>
+    </div>
+</html:form>

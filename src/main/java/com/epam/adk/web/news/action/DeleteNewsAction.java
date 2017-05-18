@@ -1,5 +1,6 @@
 package com.epam.adk.web.news.action;
 
+import com.epam.adk.web.news.form.NewsForm;
 import com.epam.adk.web.news.service.NewsService;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -27,13 +28,14 @@ public class DeleteNewsAction extends Action {
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String[] ids = request.getParameterValues(ID_PARAMETER);
+        NewsForm newsForm = (NewsForm) form;
 
-        if (ids != null) {
-            for (String id : ids) {
-                newsService.deleteNews(Integer.parseInt(id));
-            }
+        int[] ids = newsForm.getSelectedNewsIds();
+
+        for (int id : ids) {
+            newsService.deleteNews(id);
         }
+
         return mapping.findForward(SUCCESS);
     }
 }

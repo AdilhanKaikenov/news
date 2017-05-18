@@ -13,6 +13,8 @@
         <html:errors/>
     </div>
     <html:hidden property="news.id"/>
+    <html:hidden property="selectedNewsIds" value="pass_validation"/>
+
     <table class="news-view-table" cellspacing="20px">
         <tr>
             <th><bean:message key="news.label.title"/></th>
