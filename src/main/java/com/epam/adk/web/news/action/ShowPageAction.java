@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
+import java.util.List;
 
 /**
  * TODO: Comment
@@ -25,6 +26,8 @@ public class ShowPageAction extends DispatchAction {
 
     private static final String ID_PARAMETER = "id";
     private static final String SHOW_ADD_OR_EDIT_SUCCESS = "show_add_or_edit_success";
+    private static final String SHOW_NEWS_LIST_SUCCESS = "show_news_list_success";
+    private static final String NEWS_LIST = "newsList";
 
     @Autowired
     private NewsService newsService;
@@ -41,5 +44,12 @@ public class ShowPageAction extends DispatchAction {
             newsForm.setStrDate(DateUtil.parseDateToString(new Date(), request.getLocale()));
         }
         return mapping.findForward(SHOW_ADD_OR_EDIT_SUCCESS);
+    }
+
+    public ActionForward showNewsList(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        List<News> newsList = newsService.readAllNews();
+        request.setAttribute(NEWS_LIST, newsList);
+        return mapping.findForward(SHOW_NEWS_LIST_SUCCESS);
     }
 }
