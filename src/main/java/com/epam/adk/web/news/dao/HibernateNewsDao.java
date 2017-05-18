@@ -1,8 +1,9 @@
 package com.epam.adk.web.news.dao;
 
 import com.epam.adk.web.news.model.News;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,8 @@ import java.util.List;
  */
 @Repository
 public class HibernateNewsDao implements NewsDao {
+
+    private static final String DATE_PROPERTY_NAME = "date";
 
     private HibernateTemplate hibernateTemplate;
 
@@ -53,7 +56,8 @@ public class HibernateNewsDao implements NewsDao {
 
     @Override
     public List<News> findAll() {
-        return hibernateTemplate.loadAll(News.class);
+        DetachedCriteria criteria = DetachedCriteria.forClass(News.class);
+        return (List<News>)  hibernateTemplate.findByCriteria(criteria.addOrder(Order.asc(DATE_PROPERTY_NAME)));
     }
 
     @Override
