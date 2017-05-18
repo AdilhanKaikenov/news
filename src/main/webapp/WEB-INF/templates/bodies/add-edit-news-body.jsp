@@ -4,12 +4,14 @@
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="ftm"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="ftm" %>
 
 <c:set value="${pageContext.request.contextPath}" var="base"/>
 
 <html:form action="/AddEditNews">
-    <html:errors/>
+    <div class="form-error-section">
+        <html:errors/>
+    </div>
     <html:hidden property="news.id"/>
     <table class="news-view-table" cellspacing="20px">
         <tr>

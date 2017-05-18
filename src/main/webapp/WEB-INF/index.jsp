@@ -5,4 +5,4 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<jsp:forward page="/NewsList.do"/>
+<jsp:forward page="/ShowPage.do?method=showNewsList"/>

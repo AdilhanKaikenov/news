@@ -4,12 +4,13 @@
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="ftm"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="ftm" %>
 
 <c:set value="${pageContext.request.contextPath}" var="base"/>
 
-<%--@elvariable id="news" type="com.epam.adk.news.model.News"--%>
+<ftm:setBundle basename="i18n"/>
 
+<%--@elvariable id="news" type="com.epam.adk.news.model.News"--%>
 <form action="${base}/DeleteNews.do" method="post">
     <input type="hidden" name="id" value="${news.id}">
 
@@ -32,8 +33,10 @@
         </tr>
     </table>
     <div class="view-button-section">
-        <button><a href="${base}/ShowPage.do?method=showNewsForm&id=${news.id}"><bean:message key="link.label.edit"/></a></button>
-        <button type="submit"><bean:message key="delete.label.button.submit"/></button>
+        <button><a href="${base}/ShowPage.do?method=showNewsForm&id=${news.id}"><bean:message
+                key="link.label.edit"/></a></button>
+        <button type="submit" onclick="confirm('<bean:message key="confirm.message.delete.news"/>')"><bean:message
+                key="delete.label.button.submit"/></button>
     </div>
 </form>
 

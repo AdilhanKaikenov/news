@@ -11,17 +11,13 @@
 
     <action-mappings>
 
-        <action path="/NewsList"
-                type="com.epam.adk.web.news.action.ShowNewsListAction">
-            <forward name="success" path="/WEB-INF/templates/pages/welcome.jsp"/>
-        </action>
         <action path="/DeleteNews"
                 type="com.epam.adk.web.news.action.DeleteNewsAction">
-            <forward name="success" path="/NewsList.do" redirect="true"/>
+            <forward name="success" path="/ShowPage.do?method=showNewsList" redirect="true"/>
         </action>
         <action path="/SelectLanguage"
                 type="com.epam.adk.web.news.action.SelectLanguageAction">
-            <forward name="success" path="/NewsList.do" redirect="true"/>
+            <forward name="success" path="/ShowPage.do?method=showNewsList" redirect="true"/>
         </action>
         <action path="/ViewNews" type="com.epam.adk.web.news.action.ViewNewsAction">
             <forward name="success" path="/WEB-INF/templates/pages/news-view.jsp"/>
@@ -31,9 +27,9 @@
                 parameter="method"
                 name="NewsForm"
                 validate="false"
-                scope="request"
-        >
+                scope="request">
             <forward name="show_add_or_edit_success" path="/WEB-INF/templates/pages/add-edit-news.jsp"/>
+            <forward name="show_news_list_success" path="/WEB-INF/templates/pages/welcome.jsp"/>
         </action>
         <action path="/AddEditNews"
                 type="com.epam.adk.web.news.action.AddEditAction"
@@ -41,9 +37,8 @@
                 scope="request"
                 validate="true"
                 input="/WEB-INF/templates/pages/add-edit-news.jsp">
-            <forward name="success" path="/NewsList.do" redirect="true"/>
+            <forward name="success" path="/ShowPage.do?method=showNewsList" redirect="true"/>
         </action>
-
 
     </action-mappings>
 

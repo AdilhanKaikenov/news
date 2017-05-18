@@ -103,3 +103,8 @@ a {
     float: right;
     margin-right: 600px;
 }
+
+.form-error-section {
+    color: red;
+    margin-left: 35px;
+}
