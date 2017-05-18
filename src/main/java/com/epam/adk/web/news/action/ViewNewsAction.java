@@ -7,10 +7,11 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.struts.ActionSupport;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import static com.epam.adk.web.news.util.ConstantHolder.*;
 
 /**
  * TODO: Comment
@@ -20,10 +21,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author Kaikenov Adilkhan
  */
 public class ViewNewsAction extends Action {
-
-    private static final String ID_PARAMETER = "id";
-    private static final String NEWS = "news";
-    private static final String SUCCESS = "success";
 
     @Autowired
     private NewsService newsService;

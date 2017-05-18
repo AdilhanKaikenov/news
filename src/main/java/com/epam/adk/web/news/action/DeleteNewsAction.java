@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static com.epam.adk.web.news.util.ConstantHolder.*;
+
 /**
  * TODO: Comment
  * <p>
@@ -18,9 +20,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author Kaikenov Adilkhan
  */
 public class DeleteNewsAction extends Action {
-
-    private static final String SUCCESS = "success";
-    private static final String ID_PARAMETER = "id";
 
     @Autowired
     private NewsService newsService;

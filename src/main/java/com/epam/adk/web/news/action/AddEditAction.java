@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static com.epam.adk.web.news.util.ConstantHolder.*;
+
 /**
  * TODO: Comment
  * <p>
@@ -21,8 +23,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author Kaikenov Adilkhan
  */
 public class AddEditAction extends Action {
-
-    private static final String SUCCESS = "success";
 
     @Autowired
     private NewsService newsService;

@@ -1,17 +1,16 @@
 package com.epam.adk.web.news.action;
 
-import com.sun.deploy.net.HttpResponse;
 import org.apache.struts.Globals;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.actions.DispatchAction;
-import org.springframework.http.HttpRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
+
+import static com.epam.adk.web.news.util.ConstantHolder.*;
 
 /**
  * TODO: Comment
@@ -21,10 +20,6 @@ import java.util.Locale;
  * @author Kaikenov Adilkhan
  */
 public class SelectLanguageAction extends Action {
-
-    private static final String REFERER = "referer";
-    private static final String SUCCESS = "success";
-    private static final String REGION_PARAMETER = "region";
 
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {

@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
 
+import static com.epam.adk.web.news.util.ConstantHolder.*;
+
 /**
  * TODO: Comment
  * <p>
@@ -23,11 +25,6 @@ import java.util.List;
  * @author Kaikenov Adilkhan
  */
 public class ShowPageAction extends DispatchAction {
-
-    private static final String ID_PARAMETER = "id";
-    private static final String SHOW_ADD_OR_EDIT_SUCCESS = "show_add_or_edit_success";
-    private static final String SHOW_NEWS_LIST_SUCCESS = "show_news_list_success";
-    private static final String NEWS_LIST = "newsList";
 
     @Autowired
     private NewsService newsService;
