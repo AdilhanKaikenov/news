@@ -33,7 +33,7 @@
     </table>
     <div class="view-button-section">
         <html:submit><bean:message key="add.edit.label.save.button.submit"/></html:submit>
-        <button property="news" onclick="history.back()">
+        <button property="news" onclick="return history.back()">
             <bean:message key="add.edit.label.cancel.button"/>
         </button>
     </div>

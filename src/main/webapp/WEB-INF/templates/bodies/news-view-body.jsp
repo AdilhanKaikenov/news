@@ -35,7 +35,7 @@
     <div class="view-button-section">
         <button><a href="${base}/ShowPage.do?method=showNewsForm&id=${news.id}"><bean:message
                 key="link.label.edit"/></a></button>
-        <button type="submit" onclick="confirm('<bean:message key="confirm.message.delete.news"/>')"><bean:message
+        <button type="submit" onclick="return confirm('<bean:message key="confirm.message.delete.news"/>')"><bean:message
                 key="delete.label.button.submit"/></button>
     </div>
 </form>

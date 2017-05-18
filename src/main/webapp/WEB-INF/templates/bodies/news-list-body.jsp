@@ -27,7 +27,7 @@
     </c:forEach>
     <c:if test="${not empty newsList}">
         <div class="delete-button-section">
-            <button type="submit" onclick="confirm('<bean:message key="confirm.message.delete.newslist"/>')">
+            <button type="submit" onclick="return confirm('<bean:message key="confirm.message.delete.newslist"/>')">
                 <bean:message key="delete.label.button.submit"/></button>
         </div>
     </c:if>
