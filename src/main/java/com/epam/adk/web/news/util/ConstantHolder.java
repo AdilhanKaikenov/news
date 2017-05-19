@@ -14,7 +14,6 @@ public class ConstantHolder {
     public static final String SHOW_VIEW_NEWS_SUCCESS = "show_view_news_success";
     public static final String REGION_PARAMETER = "region";
     public static final String ID_PARAMETER = "id";
-    public static final String NEWS_LIST = "newsList";
     public static final String SUCCESS = "success";
     public static final String REFERER = "referer";
     public static final String NEWS = "news";

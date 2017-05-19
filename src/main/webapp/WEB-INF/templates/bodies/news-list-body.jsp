@@ -23,10 +23,10 @@
             <div class="date-section"><ftm:formatDate value="${news.date}"/></div>
             <div class="brief-section">${news.brief}</div>
             <div class="links-and-other-section">
-                <button><html:link action="/ShowPage.do?method=showViewNews&id=${news.id}"><bean:message
-                        key="link.label.view"/></html:link></button>
-                <button><html:link action="/ShowPage.do?method=showNewsForm&id=${news.id}"><bean:message
-                        key="link.label.edit"/></html:link></button>
+                <html:link styleClass="general-button" action="/ShowPage.do?method=showViewNews&id=${news.id}"><bean:message
+                        key="link.label.view"/></html:link> /
+                <html:link styleClass="general-button" action="/ShowPage.do?method=showNewsForm&id=${news.id}"><bean:message
+                        key="link.label.edit"/></html:link>
                 <html:multibox property="selectedNewsIds" value="${news.id}"/>
             </div>
         </div>
@@ -35,7 +35,7 @@
     <div class="delete-button-section">
 
         <logic:notEmpty name="NewsForm" property="newsList">
-            <html:submit onclick="return deleteNewsList()"><bean:message key="delete.label.button.submit"/></html:submit>
+            <html:submit styleClass="general-button" onclick="return deleteNewsList()"><bean:message key="delete.label.button.submit"/></html:submit>
         </logic:notEmpty>
 
         <script type="text/javascript">

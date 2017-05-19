@@ -17,7 +17,6 @@
                 validate="true"
                 scope="request"
                 input="/ShowPage.do?method=showNewsList">
-
             <forward name="success" path="/ShowPage.do?method=showNewsList" redirect="true"/>
         </action>
         <action path="/SelectLanguage"
@@ -30,6 +29,7 @@
                 name="NewsForm"
                 validate="false"
                 scope="request">
+
             <forward name="show_add_or_edit_success" path="/WEB-INF/templates/pages/add-edit-news.jsp"/>
             <forward name="show_view_news_success" path="/WEB-INF/templates/pages/news-view.jsp"/>
             <forward name="show_news_list_success" path="/WEB-INF/templates/pages/welcome.jsp"/>
@@ -40,7 +40,7 @@
                 scope="request"
                 validate="true"
                 input="/WEB-INF/templates/pages/add-edit-news.jsp">
-            <forward name="success" path="/ShowPage.do?method=showNewsList" redirect="true"/>
+            <forward name="success" path="/WEB-INF/templates/pages/news-view.jsp"/>
         </action>
 
     </action-mappings>

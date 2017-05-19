@@ -22,7 +22,7 @@
         </tr>
         <tr>
             <th><bean:message key="news.label.date"/></th>
-                <td><bean:write name="NewsForm" property="strDate" format="dd/MM/yyyy/"/></td>
+            <td><bean:write name="NewsForm" property="strDate" format="dd/MM/yyyy/"/></td>
         </tr>
         <tr>
             <th><bean:message key="news.label.brief"/></th>
@@ -35,9 +35,9 @@
     </table>
     <div class="view-button-section">
             <%--@elvariable id="news" type="com.epam.adk.web.news.model.News"--%>
-        <button><html:link action="/ShowPage.do?method=showNewsForm&id=${news.id}"><bean:message
-                key="link.label.edit"/></html:link></button>
-        <html:submit onclick="return deleteNewsList()"><bean:message
+            <html:link styleClass="general-button" action="/ShowPage.do?method=showNewsForm&id=${news.id}"><bean:message
+                    key="link.label.edit"/></html:link>
+        <html:submit styleClass="general-button" onclick="return deleteNewsList()"><bean:message
                 key="delete.label.button.submit"/></html:submit>
 
         <script type="text/javascript">

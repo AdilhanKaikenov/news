@@ -13,7 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static com.epam.adk.web.news.util.ConstantHolder.*;
+import static com.epam.adk.web.news.util.ConstantHolder.NEWS;
+import static com.epam.adk.web.news.util.ConstantHolder.SUCCESS;
 
 /**
  * TODO: Comment
@@ -37,6 +38,8 @@ public class AddEditAction extends Action {
         news.setDate(DateUtil.parseStringToDate(strDate));
 
         newsService.addOrEditNews(news);
+
+        request.setAttribute(NEWS, news);
 
         return mapping.findForward(SUCCESS);
     }

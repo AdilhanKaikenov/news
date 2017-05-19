@@ -23,19 +23,25 @@ public class SelectLanguageAction extends Action {
 
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
         String region = request.getParameter(REGION_PARAMETER);
+
         Locale locale = new Locale(region);
         request.getSession().setAttribute(Globals.LOCALE_KEY, locale);
+
         return getCurrentPage(mapping, request);
     }
 
     private ActionForward getCurrentPage(ActionMapping mapping, HttpServletRequest request) {
+
         String referer = request.getHeader(REFERER);
+
         boolean isRedirect = true;
         ActionForward actionForward = new ActionForward(referer, isRedirect);
         if (referer == null) {
             return mapping.findForward(SUCCESS);
         }
+
         return actionForward;
     }
 }
