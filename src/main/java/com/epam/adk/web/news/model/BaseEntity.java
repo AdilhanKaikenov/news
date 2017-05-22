@@ -1,5 +1,7 @@
 package com.epam.adk.web.news.model;
 
+import javax.persistence.*;
+
 /**
  * TODO: Comment
  *
@@ -7,8 +9,13 @@ package com.epam.adk.web.news.model;
  *
  * @author Kaikenov Adilkhan
  */
+@MappedSuperclass
 public abstract class BaseEntity {
 
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NEWS_SEQ")
+    @SequenceGenerator(name = "NEWS_SEQ", sequenceName = "NEWS_SEQ", allocationSize = 1)
     private int id;
 
     public BaseEntity() {

@@ -11,9 +11,10 @@
         <property name="hibernate.connection.username">adkdb</property>
         <property name="hibernate.connection.password">admin</property>
         <property name="hibernate.show_sql">true</property>
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">update</property>
 
-        <mapping resource="com/epam/adk/web/news/News.hbm.xml"/>
+        <!--<mapping resource="com/epam/adk/web/news/News.hbm.xml"/>-->
+        <mapping class="com.epam.adk.web.news.model.News"/>
 
     </session-factory>
 

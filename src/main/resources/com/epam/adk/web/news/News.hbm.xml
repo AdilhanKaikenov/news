@@ -27,4 +27,24 @@
             <column name="CONTENT" sql-type="varchar2(2048 char)" length="2048" not-null="true"/>
         </property>
     </class>
+
+    <query name="News.readAll">
+        FROM News order by date asc
+    </query>
+    <query name="News.readById">
+        FROM News news WHERE news.id=:id
+    </query>
+    <query name="News.deleteById">
+        DELETE FROM News news WHERE news.id = :id
+    </query>
+    <query name="News.deleteList">
+        DELETE FROM News news WHERE news.id = :idList
+    </query>
+
+    <sql-query name="News.save">
+        INSERT INTO News(ID, TITLE, DATETIME, BRIEF, CONTENT)VALUES (NEWS_SEQ.nextval, :title, :datetime, :brief, :content)
+    </sql-query>
+    <sql-query name="News.update">
+        UPDATE News SET title = :title, datetime = :datetime, brief = :brief, content = :content WHERE id = :id
+    </sql-query>
 </hibernate-mapping>
