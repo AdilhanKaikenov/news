@@ -32,8 +32,8 @@
         <!--<property name="mappingResources">-->
         <property name="annotatedClasses">
             <list>
-                <value>com/epam/adk/web/news/News.hbm.xml</value>
-                <!--<value>com.epam.adk.web.news.model.News</value>-->
+                <!--<value>com/epam/adk/web/news/News.hbm.xml</value>-->
+                <value>com.epam.adk.web.news.model.News</value>
             </list>
         </property>
     </bean>
