@@ -13,6 +13,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.epam.adk.web.news.util.ConstantHolder.*;
+
 /**
  * TODO: Comment
  * <p>
@@ -29,19 +31,18 @@ public class HibernateJpaNewsDao implements NewsDao {
 
     @Override
     public News read(int id) {
-        Query query = getSession().getNamedQuery("News.readById");
-        query.setParameter("id", id);
+        Query query = getSession().getNamedQuery(NAMED_QUERY_NEWS_READ_BY_ID);
+        query.setParameter(ID_PARAMETER, id);
         return (News) query.uniqueResult();
     }
 
     @Override
     public int save(News news) {
-
         Session session = getSession();
-        Query query = session.getNamedQuery("News.save");
+        Query query = session.getNamedQuery(NAMED_QUERY_NEWS_SAVE);
         setNewsQueryParameters(news, query);
         query.executeUpdate();
-        int id = getAutoIncrementID(session);
+        int id = getAutoIncrementedID(session);
         news.setId(id);
         return id;
     }
@@ -49,41 +50,37 @@ public class HibernateJpaNewsDao implements NewsDao {
     @Override
     public void saveOrUpdate(News news) {
         Session session = getSession();
-        if ((news.getId() == 0)) {
+        if ((news.getId() == ZERO)) {
             save(news);
         } else {
-            Query query = session.getNamedQuery("News.update");
+            Query query = session.getNamedQuery(NAMED_QUERY_NEWS_UPDATE);
             setNewsQueryParameters(news, query);
-            query.setParameter("id", news.getId());
+            query.setParameter(ID_PARAMETER, news.getId());
             query.executeUpdate();
         }
     }
 
     @Override
     public List<News> findAll() {
-
-        Query query = getSession().getNamedQuery("News.readAll");
+        Query query = getSession().getNamedQuery(NAMED_QUERY_NEWS_READ_ALL);
         return query.list();
     }
 
     @Override
     public void delete(News news) {
-        Query query = getSession().getNamedQuery("News.deleteById");
-        query.setParameter("id", news.getId());
+        Query query = getSession().getNamedQuery(NAMED_QUERY_NEWS_DELETE_BY_ID);
+        query.setParameter(ID_PARAMETER, news.getId());
         query.executeUpdate();
     }
 
     @Override
     public void deleteAll(List<News> list) {
-
         List<Integer> idList = new ArrayList<>();
-
         for (News news : list) {
             idList.add(news.getId());
         }
-
-        Query query = getSession().getNamedQuery("News.deleteList");
-        query.setParameterList("idList", idList);
+        Query query = getSession().getNamedQuery(NAMED_QUERY_NEWS_DELETE_LIST);
+        query.setParameterList(ID_LIST, idList);
         query.executeUpdate();
     }
 
@@ -92,15 +89,14 @@ public class HibernateJpaNewsDao implements NewsDao {
     }
 
     private void setNewsQueryParameters(News news, Query query) {
-        query.setParameter("title", news.getTitle());
-        query.setParameter("brief", news.getBrief());
-        query.setParameter("datetime", news.getDate());
-        query.setParameter("content", news.getContent());
+        query.setParameter(TITLE_PARAMETER, news.getTitle());
+        query.setParameter(BRIEF_PARAMETER, news.getBrief());
+        query.setParameter(DATETIME_PARAMETER, news.getDate());
+        query.setParameter(CONTENT_PARAMETER, news.getContent());
     }
 
-    private int getAutoIncrementID(Session session) {
-        String sql = "SELECT NEWS_SEQ.currval FROM dual";
-        SQLQuery query = session.createSQLQuery(sql);
-        return ((BigDecimal)query.list().get(0)).intValue();
+    private int getAutoIncrementedID(Session session) {
+        SQLQuery query = session.createSQLQuery(SELECT_LAST_INSERTED_ID);
+        return ((BigDecimal)query.list().get(ZERO)).intValue();
     }
 }
