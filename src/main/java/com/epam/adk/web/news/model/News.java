@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @NamedQueries({
         @NamedQuery(name = "News.readById", query = "FROM News news WHERE news.id=:id"),
-        @NamedQuery(name = "News.readAll", query = "FROM News order by date asc"),
+        @NamedQuery(name = "News.readAll", query = "FROM News order by date desc"),
         @NamedQuery(name = "News.deleteById", query = "DELETE FROM News news WHERE news.id = :id"),
         @NamedQuery(name = "News.deleteList", query = "DELETE FROM News news WHERE news.id = :idList")
 })
