@@ -21,7 +21,7 @@ import java.util.List;
 public class NewsService {
 
     @Autowired
-    @Qualifier("HibernateJpaNewsDao")
+    @Qualifier("HibernateTemplateNewsDao")
     private NewsDao newsDao;
 
     public News readNews(int id) {
