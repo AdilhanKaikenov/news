@@ -6,21 +6,21 @@
 
 <tiles-definitions>
 
-    <definition name="header" page="/WEB-INF/templates/titles/header.jsp"/>
-    <definition name="menu" page="/WEB-INF/templates/titles/menu.jsp"/>
-    <definition name="footer" page="/WEB-INF/templates/titles/footer.jsp"/>
+    <definition name="header" page="/WEB-INF/jsp/templates/titles/header.jsp"/>
+    <definition name="menu" page="/WEB-INF/jsp/templates/titles/menu.jsp"/>
+    <definition name="footer" page="/WEB-INF/jsp/templates/titles/footer.jsp"/>
 
-    <definition name="base.layout" page="/WEB-INF/templates/base-layout.jsp">
+    <definition name="base.layout" page="/WEB-INF/jsp/templates/base-layout.jsp">
         <put name="header" value="header"/>
         <put name="title" value="Title"/>
-        <put name="body" value="/WEB-INF/templates/titles/body.jsp"/>
+        <put name="body" value="/WEB-INF/jsp/templates/titles/body.jsp"/>
         <put name="menu" value="menu"/>
         <put name="footer" value="footer"/>
     </definition>
 
     <!--Bodies-->
-    <definition name="news.list" page="/WEB-INF/templates/bodies/news-list-body.jsp"/>
-    <definition name="news.view" page="/WEB-INF/templates/bodies/news-view-body.jsp"/>
-    <definition name="news.edit" page="/WEB-INF/templates/bodies/add-edit-news-body.jsp"/>
+    <definition name="news.list" page="/WEB-INF/jsp/templates/bodies/news-list-body.jsp"/>
+    <definition name="news.view" page="/WEB-INF/jsp/templates/bodies/news-view-body.jsp"/>
+    <definition name="news.edit" page="/WEB-INF/jsp/templates/bodies/add-edit-news-body.jsp"/>
 
 </tiles-definitions>

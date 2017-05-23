@@ -30,17 +30,17 @@
                 validate="false"
                 scope="request">
 
-            <forward name="show_add_or_edit_success" path="/WEB-INF/templates/pages/add-edit-news.jsp"/>
-            <forward name="show_view_news_success" path="/WEB-INF/templates/pages/news-view.jsp"/>
-            <forward name="show_news_list_success" path="/WEB-INF/templates/pages/welcome.jsp"/>
+            <forward name="show_add_or_edit_success" path="/WEB-INF/jsp/templates/pages/add-edit-news.jsp"/>
+            <forward name="show_view_news_success" path="/WEB-INF/jsp/templates/pages/news-view.jsp"/>
+            <forward name="show_news_list_success" path="/WEB-INF/jsp/templates/pages/welcome.jsp"/>
         </action>
         <action path="/AddEditNews"
                 type="com.epam.adk.web.news.action.AddEditAction"
                 name="NewsForm"
                 scope="request"
                 validate="true"
-                input="/WEB-INF/templates/pages/add-edit-news.jsp">
-            <forward name="success" path="/WEB-INF/templates/pages/news-view.jsp"/>
+                input="/WEB-INF/jsp/templates/pages/add-edit-news.jsp">
+            <forward name="success" path="/WEB-INF/jsp/templates/pages/news-view.jsp"/>
         </action>
 
     </action-mappings>
