@@ -48,7 +48,7 @@ public class HibernateNewsDao implements NewsDao {
     public List<News> findAll() {
         Session session = sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(News.class);
-        criteria.addOrder(Order.asc(DATE_PROPERTY_NAME));
+        criteria.addOrder(Order.desc(DATE_PROPERTY_NAME));
         return criteria.list();
     }
 
