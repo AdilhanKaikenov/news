@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * TODO: Comment
@@ -34,5 +33,26 @@ public class NewsRestController {
         return new ResponseEntity<>(news, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/get/", method = RequestMethod.GET)
+    public ResponseEntity<List<News>> getNewsList() {
 
+        List<News> newsList = newsService.readAllNews();
+
+        if (newsList.isEmpty()) {
+            return new ResponseEntity<>(newsList, HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(newsList, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public ResponseEntity<News> createNews(@RequestBody News news) {
+
+        if (news.getId() != 0) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+
+        newsService.addNews(news);
+
+        return new ResponseEntity<>(news, HttpStatus.CREATED);
+    }
 }
