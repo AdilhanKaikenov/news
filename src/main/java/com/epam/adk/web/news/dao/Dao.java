@@ -19,6 +19,8 @@ public interface Dao<T extends BaseEntity> {
 
     void saveOrUpdate(T t);
 
+    void update(T t);
+
     List<T> findAll();
 
     void delete(T t);

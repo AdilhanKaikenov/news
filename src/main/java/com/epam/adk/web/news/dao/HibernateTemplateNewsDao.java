@@ -57,6 +57,11 @@ public class HibernateTemplateNewsDao implements NewsDao {
     }
 
     @Override
+    public void update(News news) {
+        hibernateTemplate.update(news);
+    }
+
+    @Override
     public List<News> findAll() {
         DetachedCriteria criteria = DetachedCriteria.forClass(News.class);
         return (List<News>)  hibernateTemplate.findByCriteria(criteria.addOrder(Order.desc(DATE_PROPERTY_NAME)));

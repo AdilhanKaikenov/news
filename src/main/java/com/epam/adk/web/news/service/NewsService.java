@@ -21,7 +21,7 @@ import java.util.List;
 public class NewsService {
 
     @Autowired
-    @Qualifier("HibernateTemplateNewsDao")
+    @Qualifier("HibernateJpaNewsDao")
     private NewsDao newsDao;
 
     public News readNews(int id) {
@@ -36,6 +36,10 @@ public class NewsService {
         newsDao.saveOrUpdate(news);
     }
 
+    public void updateNews(News news) {
+        newsDao.update(news);
+    }
+
     public List<News> readAllNews() {
         return newsDao.findAll();
     }
@@ -43,5 +47,9 @@ public class NewsService {
     public void deleteNews(int id) {
         News news = newsDao.read(id);
         newsDao.delete(news);
+    }
+
+    public void deleteNewsList(List<News> newsList) {
+        newsDao.deleteAll(newsList);
     }
 }

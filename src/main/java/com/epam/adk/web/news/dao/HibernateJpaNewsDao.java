@@ -61,6 +61,14 @@ public class HibernateJpaNewsDao implements NewsDao {
     }
 
     @Override
+    public void update(News news) {
+        Query query = getSession().getNamedQuery(NAMED_QUERY_NEWS_UPDATE);
+        setNewsQueryParameters(news, query);
+        query.setParameter(ID_PARAMETER, news.getId());
+        query.executeUpdate();
+    }
+
+    @Override
     public List<News> findAll() {
         Query query = getSession().getNamedQuery(NAMED_QUERY_NEWS_READ_ALL);
         return query.list();

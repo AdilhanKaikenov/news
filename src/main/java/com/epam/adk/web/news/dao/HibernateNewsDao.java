@@ -45,6 +45,11 @@ public class HibernateNewsDao implements NewsDao {
     }
 
     @Override
+    public void update(News news) {
+        sessionFactory.getCurrentSession().update(news);
+    }
+
+    @Override
     public List<News> findAll() {
         Session session = sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(News.class);
