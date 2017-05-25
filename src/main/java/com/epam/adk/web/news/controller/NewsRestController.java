@@ -25,10 +25,10 @@ public class NewsRestController {
     private NewsService newsService;
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public ResponseEntity<News> getNews(@PathVariable String id) {
+    public ResponseEntity<News> getNews(@PathVariable("id") String id) {
         News news = newsService.readNews(Integer.parseInt(id));
         if (news == null) {
-            return new ResponseEntity<>(news, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(news, HttpStatus.OK);
     }
@@ -54,5 +54,42 @@ public class NewsRestController {
         newsService.addNews(news);
 
         return new ResponseEntity<>(news, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public ResponseEntity<News> updateNews(@RequestBody News news) {
+        News targetNews = newsService.readNews(news.getId());
+
+        if (targetNews == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        newsService.updateNews(news);
+
+        return new ResponseEntity<>(news, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<News> deleteNews(@PathVariable("id") String id) {
+        News news = newsService.readNews(Integer.parseInt(id));
+
+        if (news == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        newsService.deleteNews(Integer.parseInt(id));
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/delete/", method = RequestMethod.DELETE)
+    public ResponseEntity<News> deleteAllNews(@RequestBody List<News> newsList) {
+
+        if (newsList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        newsService.deleteNewsList(newsList);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
