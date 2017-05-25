@@ -25,8 +25,8 @@ public class NewsRestController {
     private NewsService newsService;
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public ResponseEntity<News> getNews(@PathVariable("id") String id) {
-        News news = newsService.readNews(Integer.parseInt(id));
+    public ResponseEntity<News> getNews(@PathVariable("id") int id) {
+        News news = newsService.readNews(id);
         if (news == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -70,14 +70,14 @@ public class NewsRestController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<News> deleteNews(@PathVariable("id") String id) {
-        News news = newsService.readNews(Integer.parseInt(id));
+    public ResponseEntity<News> deleteNews(@PathVariable("id") int id) {
+        News news = newsService.readNews(id);
 
         if (news == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        newsService.deleteNews(Integer.parseInt(id));
+        newsService.deleteNews(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
