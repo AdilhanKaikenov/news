@@ -1,6 +1,7 @@
 package com.epam.adk.web.news.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
 /**
@@ -22,6 +23,7 @@ import java.util.Date;
         @NamedNativeQuery(name = "News.update", query = "UPDATE News SET title = :title, datetime = :datetime," +
                 "brief = :brief, content = :content WHERE id = :id")
 })
+@XmlRootElement(name = "news")
 @Entity
 @Table(name = "NEWS", schema = "ADKDB")
 public class News extends BaseEntity {

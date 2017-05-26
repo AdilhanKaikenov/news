@@ -10,7 +10,10 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:spring-context.xml</param-value>
+        <param-value>
+            classpath:spring-context.xml
+            classpath:cxf-servlet.xml
+        </param-value>
     </context-param>
 
     <!-- Creates the Spring Container shared by all Servlets and Filters classpath:-->
@@ -70,4 +73,13 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>cxf</servlet-name>
+        <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cxf</servlet-name>
+        <url-pattern>/soap/*</url-pattern>
+    </servlet-mapping>
 </web-app>
