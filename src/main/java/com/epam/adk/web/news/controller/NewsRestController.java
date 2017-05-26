@@ -19,33 +19,14 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/rest", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class NewsRestController {
+public class NewsRestController implements RestCRUDController<News> {
 
     @Autowired
     private NewsService newsService;
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
-    public ResponseEntity<News> getNews(@PathVariable("id") int id) {
-        News news = newsService.readNews(id);
-        if (news == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(news, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/get/", method = RequestMethod.GET)
-    public ResponseEntity<List<News>> getNewsList() {
-
-        List<News> newsList = newsService.readAllNews();
-
-        if (newsList.isEmpty()) {
-            return new ResponseEntity<>(newsList, HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(newsList, HttpStatus.OK);
-    }
-
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ResponseEntity<News> createNews(@RequestBody News news) {
+    @Override
+    public ResponseEntity<News> create(@RequestBody News news) {
 
         if (news.getId() != 0) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -56,8 +37,31 @@ public class NewsRestController {
         return new ResponseEntity<>(news, HttpStatus.CREATED);
     }
 
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    @Override
+    public ResponseEntity<News> read(@PathVariable("id") int id) {
+        News news = newsService.readNews(id);
+        if (news == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(news, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/get/", method = RequestMethod.GET)
+    @Override
+    public ResponseEntity<List<News>> readList() {
+
+        List<News> newsList = newsService.readAllNews();
+
+        if (newsList.isEmpty()) {
+            return new ResponseEntity<>(newsList, HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(newsList, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public ResponseEntity<News> updateNews(@RequestBody News news) {
+    @Override
+    public ResponseEntity<News> update(@RequestBody News news) {
         News targetNews = newsService.readNews(news.getId());
 
         if (targetNews == null) {
@@ -70,7 +74,8 @@ public class NewsRestController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<News> deleteNews(@PathVariable("id") int id) {
+    @Override
+    public ResponseEntity<News> delete(@PathVariable("id") int id) {
         News news = newsService.readNews(id);
 
         if (news == null) {
@@ -82,7 +87,8 @@ public class NewsRestController {
     }
 
     @RequestMapping(value = "/delete/", method = RequestMethod.DELETE)
-    public ResponseEntity<News> deleteAllNews(@RequestBody List<News> newsList) {
+    @Override
+    public ResponseEntity<News> deleteAll(@RequestBody List<News> newsList) {
 
         if (newsList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
