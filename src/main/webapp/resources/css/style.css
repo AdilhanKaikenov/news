@@ -120,3 +120,8 @@ a {
     border-bottom: 1px solid #333333;
     border-left: 1px solid #CCCCCC;
 }
+
+.news-list-filter {
+    width: 100%;
+    height: 40px;
+}

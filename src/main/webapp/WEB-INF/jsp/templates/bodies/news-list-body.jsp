@@ -7,6 +7,17 @@
 
 <c:set value="${pageContext.request.contextPath}" var="base"/>
 
+<div class="news-list-filter">
+
+    <form action="${base}/filter" method="post">
+        Title: <input type="text" name="title"/>
+        Date From: <input type="date" name="from"/>
+        Date To:<input type="date" name="to"/>
+        <input type="submit" value="Filter">
+    </form>
+
+</div>
+
 <html:form action="/DeleteNews.do" method="post">
     <div class="form-error-section">
         <html:errors/>
