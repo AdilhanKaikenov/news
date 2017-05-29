@@ -25,8 +25,12 @@ public class DateUtil {
     }
 
     public static Date parseStringToDate(String source) throws DateParsingException {
+        return parseStringToDate(source, DATE_PATTERN);
+    }
+
+    public static Date parseStringToDate(String source, String pattern) throws DateParsingException {
         Date date;
-        simpleDateFormat = new SimpleDateFormat(DATE_PATTERN);
+        simpleDateFormat = new SimpleDateFormat(pattern);
         try {
             date = simpleDateFormat.parse(source);
         } catch (ParseException e) {
