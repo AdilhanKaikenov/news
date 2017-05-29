@@ -1,6 +1,13 @@
 package com.epam.adk.web.news.soap;
 
+import com.epam.adk.web.news.model.News;
+import com.epam.adk.web.news.service.NewsService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.jws.WebMethod;
 import javax.jws.WebService;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * TODO: Comment
@@ -10,6 +17,42 @@ import javax.jws.WebService;
  * @author Kaikenov Adilkhan
  */
 @WebService(endpointInterface = "com.epam.adk.web.news.soap.SoapWebService", serviceName = "News")
-public class NewsSoapWebService implements SoapWebService {
+public class NewsSoapWebService implements SoapWebService<News> {
 
+    @Autowired
+    private NewsService newsService;
+
+    @WebMethod
+    @Override
+    public int create(News news) {
+        return newsService.addNews(news);
+    }
+
+    @WebMethod
+    @Override
+    public News read(int id) {
+        return newsService.readNews(id);
+    }
+
+    @WebMethod
+    @Override
+    public void update(News news) {
+        newsService.updateNews(news);
+    }
+
+    @WebMethod
+    @Override
+    public void delete(int id) {
+        newsService.deleteNews(id);
+    }
+
+    @WebMethod
+    @Override
+    public void deleteAll(List<Integer> idList) {
+        List<News> newsList = new ArrayList<>();
+        for (Integer id : idList) {
+            newsList.add(newsService.readNews(id));
+        }
+        newsService.deleteNewsList(newsList);
+    }
 }

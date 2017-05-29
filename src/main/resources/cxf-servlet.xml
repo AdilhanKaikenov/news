@@ -7,7 +7,7 @@
         http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
     <!--http://localhost:8078/soap/webserviceSEI?wsdl-->
-    <jaxws:endpoint id="webserviceSEI" address="/webserviceSOAP"
+    <jaxws:endpoint id="webserviceSEI" address="/webserviceSEI"
                     implementor="com.epam.adk.web.news.soap.NewsSoapWebService"/>
 
 </beans>
