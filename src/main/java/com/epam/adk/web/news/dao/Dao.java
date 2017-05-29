@@ -26,4 +26,5 @@ public interface Dao<T extends BaseEntity> {
     void delete(T t);
 
     void deleteAll(List<T> list);
+
 }

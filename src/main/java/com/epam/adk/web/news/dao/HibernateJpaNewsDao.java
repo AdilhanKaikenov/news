@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.epam.adk.web.news.util.ConstantHolder.*;
@@ -49,14 +50,10 @@ public class HibernateJpaNewsDao implements NewsDao {
 
     @Override
     public void saveOrUpdate(News news) {
-        Session session = getSession();
         if ((news.getId() == ZERO)) {
             save(news);
         } else {
-            Query query = session.getNamedQuery(NAMED_QUERY_NEWS_UPDATE);
-            setNewsQueryParameters(news, query);
-            query.setParameter(ID_PARAMETER, news.getId());
-            query.executeUpdate();
+            update(news);
         }
     }
 
@@ -105,6 +102,43 @@ public class HibernateJpaNewsDao implements NewsDao {
 
     private int getAutoIncrementedID(Session session) {
         SQLQuery query = session.createSQLQuery(SELECT_LAST_INSERTED_ID);
-        return ((BigDecimal)query.list().get(ZERO)).intValue();
+        return ((BigDecimal) query.list().get(ZERO)).intValue();
+    }
+
+    @Override
+    public List<News> findByParameters(String title, Date from, Date to) {
+        StringBuilder builder = new StringBuilder("FROM News n");
+        if (!title.equals("") || from != null || to != null) {
+            builder.append(" WHERE ");
+        }
+        if (!title.equals("")) {
+            builder.append("n.title = :title ");
+        }
+        if (from != null) {
+            if (!title.equals("")) {
+                builder.append(" and ");
+            }
+            builder.append("date >= :from ");
+        }
+        if (to != null) {
+            if (!title.equals("") || from != null) {
+                builder.append(" and ");
+            }
+            builder.append("date <= :to");
+        }
+
+        Query query = getSession().createQuery(builder.toString());
+
+        if (!title.equals("")) {
+            query.setParameter("title", title);
+        }
+        if (from != null) {
+            query.setParameter("from", from);
+        }
+        if (to != null) {
+            query.setParameter("to", to);
+        }
+
+        return query.list();
     }
 }

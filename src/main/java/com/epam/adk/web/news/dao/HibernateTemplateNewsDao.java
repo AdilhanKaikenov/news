@@ -9,6 +9,7 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 import static com.epam.adk.web.news.util.ConstantHolder.DATE_PROPERTY_NAME;
@@ -24,20 +25,8 @@ import static com.epam.adk.web.news.util.ConstantHolder.DATE_PROPERTY_NAME;
 @Qualifier("HibernateTemplateNewsDao")
 public class HibernateTemplateNewsDao implements NewsDao {
 
-    private HibernateTemplate hibernateTemplate;
-
     @Autowired
-    public HibernateTemplateNewsDao(HibernateTemplate hibernateTemplate) {
-        this.hibernateTemplate = hibernateTemplate;
-    }
-
-    public HibernateTemplate getHibernateTemplate() {
-        return hibernateTemplate;
-    }
-
-    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-        this.hibernateTemplate = hibernateTemplate;
-    }
+    private HibernateTemplate hibernateTemplate;
 
     @Override
     public News read(int id) {
@@ -75,5 +64,10 @@ public class HibernateTemplateNewsDao implements NewsDao {
     @Override
     public void deleteAll(List<News> list) {
         hibernateTemplate.deleteAll(list);
+    }
+
+    @Override
+    public List<News> findByParameters(String title, Date from, Date to) {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

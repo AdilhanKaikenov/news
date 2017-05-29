@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,10 +22,10 @@ import java.util.List;
 public class NewsService {
 
     @Autowired
-    @Qualifier("HibernateJpaNewsDao")
+    @Qualifier("HibernateNewsDao")
     private NewsDao newsDao;
 
-    public News readNews(int id) {
+    public News readNews(Integer id) {
         return newsDao.read(id);
     }
 
@@ -51,5 +52,9 @@ public class NewsService {
 
     public void deleteNewsList(List<News> newsList) {
         newsDao.deleteAll(newsList);
+    }
+
+    public List<News> readAllNewsByParameters(String title, Date from, Date to) {
+       return newsDao.findByParameters(title, from, to);
     }
 }

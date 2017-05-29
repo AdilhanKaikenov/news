@@ -5,11 +5,13 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 import static com.epam.adk.web.news.util.ConstantHolder.DATE_PROPERTY_NAME;
@@ -67,5 +69,24 @@ public class HibernateNewsDao implements NewsDao {
         for (News news : list) {
             sessionFactory.getCurrentSession().delete(news);
         }
+    }
+
+    @Override
+    public List<News> findByParameters(String title, Date from, Date to) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(News.class);
+
+        if (!title.equals("")) {
+            criteria.add(Restrictions.eq("title", title));
+        }
+
+        if (from != null) {
+            criteria.add(Restrictions.ge("date", from));
+        }
+
+        if (to != null) {
+            criteria.add(Restrictions.le("date", to));
+        }
+
+        return (List<News>) criteria.list();
     }
 }
