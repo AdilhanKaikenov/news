@@ -24,7 +24,7 @@ public class NewsRestController implements RestCRUDController<News> {
     @Autowired
     private NewsService newsService;
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/news", method = RequestMethod.POST)
     @Override
     public ResponseEntity<News> create(@RequestBody News news) {
 
@@ -37,7 +37,7 @@ public class NewsRestController implements RestCRUDController<News> {
         return new ResponseEntity<>(news, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/news/{id}", method = RequestMethod.GET)
     @Override
     public ResponseEntity<News> read(@PathVariable("id") int id) {
         News news = newsService.readNews(id);
@@ -47,7 +47,7 @@ public class NewsRestController implements RestCRUDController<News> {
         return new ResponseEntity<>(news, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/get/", method = RequestMethod.GET)
+    @RequestMapping(value = "/news/", method = RequestMethod.GET)
     @Override
     public ResponseEntity<List<News>> readList() {
 
@@ -59,7 +59,7 @@ public class NewsRestController implements RestCRUDController<News> {
         return new ResponseEntity<>(newsList, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/news", method = RequestMethod.PUT)
     @Override
     public ResponseEntity<News> update(@RequestBody News news) {
         News targetNews = newsService.readNews(news.getId());
@@ -73,7 +73,7 @@ public class NewsRestController implements RestCRUDController<News> {
         return new ResponseEntity<>(news, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/news/{id}", method = RequestMethod.DELETE)
     @Override
     public ResponseEntity<News> delete(@PathVariable("id") int id) {
         News news = newsService.readNews(id);
@@ -86,7 +86,7 @@ public class NewsRestController implements RestCRUDController<News> {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/delete/", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/news/", method = RequestMethod.DELETE)
     @Override
     public ResponseEntity<News> deleteAll(@RequestBody List<News> newsList) {
 

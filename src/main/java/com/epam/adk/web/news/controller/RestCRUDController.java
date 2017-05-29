@@ -1,5 +1,6 @@
 package com.epam.adk.web.news.controller;
 
+import com.epam.adk.web.news.model.BaseEntity;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  *
  * @author Kaikenov Adilkhan
  */
-public interface RestCRUDController<T> {
+public interface RestCRUDController<T extends BaseEntity> {
 
     ResponseEntity<T> create(T t);
 
