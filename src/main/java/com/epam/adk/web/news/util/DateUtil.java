@@ -14,7 +14,7 @@ import java.util.Locale;
  *
  * @author Kaikenov Adilkhan
  */
-public class DateUtil {
+public final class DateUtil {
 
     private static final String DATE_PATTERN = "yyyy/MM/dd";
     private static SimpleDateFormat simpleDateFormat;

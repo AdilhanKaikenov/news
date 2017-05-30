@@ -7,7 +7,7 @@ package com.epam.adk.web.news.util;
  *
  * @author Kaikenov Adilkhan
  */
-public class ConstantHolder {
+public final class ConstantHolder {
 
     public static final String SHOW_ADD_OR_EDIT_SUCCESS = "show_add_or_edit_success";
     public static final String SHOW_NEWS_LIST_SUCCESS = "show_news_list_success";
@@ -31,10 +31,12 @@ public class ConstantHolder {
 
     public static final String NAMED_QUERY_NEWS_DELETE_LIST = "News.deleteList";
     public static final String NAMED_QUERY_NEWS_DELETE_BY_ID = "News.deleteById";
+    public static final String NAMED_QUERY_NEWS_COUNT_ROWS = "News.countRows";
     public static final String NAMED_QUERY_NEWS_READ_BY_ID = "News.readById";
     public static final String NAMED_QUERY_NEWS_READ_ALL = "News.readAll";
     public static final String NAMED_QUERY_NEWS_UPDATE = "News.update";
     public static final String NAMED_QUERY_NEWS_SAVE = "News.save";
+
 
 
     private ConstantHolder() {

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.MessageFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -24,20 +25,22 @@ import java.util.List;
 @Controller
 public class SpringMVCController {
 
+    private static final String DATE_PATTERN_YYYY_MM_DD = "yyyy-MM-dd";
+
     @Autowired
     private NewsService newsService;
 
-    @RequestMapping(value = "/filter", method = RequestMethod.POST)
+    @RequestMapping(value = "/news/filtered", method = RequestMethod.POST)
     public ModelAndView filter(HttpServletRequest request) {
+
         String title = request.getParameter("title");
         Date from = null;
         Date to = null;
         try {
-            from = DateUtil.parseStringToDate(request.getParameter("from"), "yyyy-MM-dd");
-            to = DateUtil.parseStringToDate(request.getParameter("to"), "yyyy-MM-dd");
+            from = DateUtil.parseStringToDate(request.getParameter("from"), DATE_PATTERN_YYYY_MM_DD);
+            to = DateUtil.parseStringToDate(request.getParameter("to"), DATE_PATTERN_YYYY_MM_DD);
         } catch (DateParsingException e) {
-                System.out.println("Error: ");
-                System.out.println(e);
+                System.out.println(MessageFormat.format("Error: {0}", e));
         }
         List<News> newsList = newsService.readAllNewsByParameters(title, from, to);
         ModelAndView modelAndView = new ModelAndView();
@@ -45,4 +48,5 @@ public class SpringMVCController {
         modelAndView.setViewName("templates/pages/filtered-news");
         return modelAndView;
     }
+
 }
