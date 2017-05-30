@@ -9,7 +9,7 @@
 
 <div class="news-list-filter">
 
-    <form action="${base}/filter" method="post">
+    <form action="${base}/news/filtered" method="post">
         Title: <input type="text" name="title"/>
         Date From: <input type="date" name="from"/>
         Date To:<input type="date" name="to"/>
