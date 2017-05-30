@@ -13,6 +13,8 @@ import java.util.List;
  */
 public interface Dao<T extends BaseEntity> {
 
+    int countRowsNumber();
+
     T read(int id);
 
     int save(T t);
@@ -20,6 +22,8 @@ public interface Dao<T extends BaseEntity> {
     void saveOrUpdate(T t);
 
     void update(T t);
+
+    List<T> findPaginated(int pageNumber, int pageSize);
 
     List<T> findAll();
 

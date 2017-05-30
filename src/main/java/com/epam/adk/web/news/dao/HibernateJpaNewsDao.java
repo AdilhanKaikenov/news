@@ -31,6 +31,12 @@ public class HibernateJpaNewsDao implements NewsDao {
     private SessionFactory sessionFactory;
 
     @Override
+    public int countRowsNumber() {
+        Query query = getSession().getNamedQuery(NAMED_QUERY_NEWS_COUNT_ROWS);
+        return Math.toIntExact((Long) query.uniqueResult());
+    }
+
+    @Override
     public News read(int id) {
         Query query = getSession().getNamedQuery(NAMED_QUERY_NEWS_READ_BY_ID);
         query.setParameter(ID_PARAMETER, id);
@@ -63,6 +69,14 @@ public class HibernateJpaNewsDao implements NewsDao {
         setNewsQueryParameters(news, query);
         query.setParameter(ID_PARAMETER, news.getId());
         query.executeUpdate();
+    }
+
+    @Override
+    public List<News> findPaginated(int pageNumber, int pageSize) {
+        Query query = getSession().getNamedQuery(NAMED_QUERY_NEWS_READ_ALL);
+        query.setFirstResult((pageNumber - 1) * pageSize);
+        query.setMaxResults(pageSize);
+        return query.list();
     }
 
     @Override

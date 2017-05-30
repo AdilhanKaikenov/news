@@ -18,6 +18,15 @@
 
 </div>
 
+<div>
+    <%--@elvariable id="pageNumber" type="java.lang.Integer"--%>
+    <c:if test="${pageNumber != 1}">
+        <c:forEach var="i" begin="${1}" end="${pageNumber}">
+            <a href="${pageContext.request.contextPath}/ShowPage.do?method=showNewsList&page=${i}">${i}</a>
+        </c:forEach>
+    </c:if>
+</div>
+
 <html:form action="/DeleteNews.do" method="post">
     <div class="form-error-section">
         <html:errors/>
@@ -34,9 +43,11 @@
             <div class="date-section"><ftm:formatDate value="${news.date}"/></div>
             <div class="brief-section">${news.brief}</div>
             <div class="links-and-other-section">
-                <html:link styleClass="general-button" action="/ShowPage.do?method=showViewNews&id=${news.id}"><bean:message
+                <html:link styleClass="general-button"
+                           action="/ShowPage.do?method=showViewNews&id=${news.id}"><bean:message
                         key="link.label.view"/></html:link> /
-                <html:link styleClass="general-button" action="/ShowPage.do?method=showNewsForm&id=${news.id}"><bean:message
+                <html:link styleClass="general-button"
+                           action="/ShowPage.do?method=showNewsForm&id=${news.id}"><bean:message
                         key="link.label.edit"/></html:link>
                 <html:multibox property="selectedNewsIds" value="${news.id}"/>
             </div>
@@ -46,7 +57,8 @@
     <div class="delete-button-section">
 
         <logic:notEmpty name="NewsForm" property="newsList">
-            <html:submit styleClass="general-button" onclick="return deleteNewsList()"><bean:message key="delete.label.button.submit"/></html:submit>
+            <html:submit styleClass="general-button" onclick="return deleteNewsList()"><bean:message
+                    key="delete.label.button.submit"/></html:submit>
         </logic:notEmpty>
 
         <script type="text/javascript">

@@ -4,6 +4,7 @@ import com.epam.adk.web.news.form.NewsForm;
 import com.epam.adk.web.news.model.News;
 import com.epam.adk.web.news.service.NewsService;
 import com.epam.adk.web.news.util.DateUtil;
+import com.epam.adk.web.news.util.Pagination;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -26,6 +27,8 @@ import static com.epam.adk.web.news.util.ConstantHolder.*;
  */
 public class ShowPageAction extends DispatchAction {
 
+    private static final int LINE_PER_PAGE = 3;
+
     @Autowired
     private NewsService newsService;
 
@@ -46,7 +49,12 @@ public class ShowPageAction extends DispatchAction {
 
     public ActionForward showNewsList(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        List<News> newsList = newsService.readAllNews();
+        Pagination pagination = new Pagination();
+
+        int newsNumber = newsService.getNewsNumber();
+        int pageNumber = pagination.getPageNumber(request, newsNumber, LINE_PER_PAGE);
+
+        List<News> newsList = newsService.getNewsPaginated(pageNumber, LINE_PER_PAGE);
 
         NewsForm newsForm = (NewsForm) form;
         newsForm.setNewsList(newsList);

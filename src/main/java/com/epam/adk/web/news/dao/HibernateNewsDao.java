@@ -2,9 +2,9 @@ package com.epam.adk.web.news.dao;
 
 import com.epam.adk.web.news.model.News;
 import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,6 +31,13 @@ public class HibernateNewsDao implements NewsDao {
     private SessionFactory sessionFactory;
 
     @Override
+    public int countRowsNumber() {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(News.class);
+        criteria.setProjection(Projections.rowCount());
+        return Math.toIntExact((Long) criteria.uniqueResult());
+    }
+
+    @Override
     public News read(int id) {
         return (News) sessionFactory.getCurrentSession().get(News.class, id);
     }
@@ -52,9 +59,17 @@ public class HibernateNewsDao implements NewsDao {
     }
 
     @Override
+    public List<News> findPaginated(int pageNumber, int pageSize) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(News.class);
+        criteria.addOrder(Order.desc(DATE_PROPERTY_NAME));
+        criteria.setFirstResult((pageNumber - 1) * pageSize);
+        criteria.setMaxResults(pageSize);
+        return criteria.list();
+    }
+
+    @Override
     public List<News> findAll() {
-        Session session = sessionFactory.getCurrentSession();
-        Criteria criteria = session.createCriteria(News.class);
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(News.class);
         criteria.addOrder(Order.desc(DATE_PROPERTY_NAME));
         return criteria.list();
     }

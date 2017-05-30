@@ -15,7 +15,8 @@ import java.util.Date;
         @NamedQuery(name = "News.readById", query = "FROM News news WHERE news.id=:id"),
         @NamedQuery(name = "News.readAll", query = "FROM News order by date desc"),
         @NamedQuery(name = "News.deleteById", query = "DELETE FROM News news WHERE news.id = :id"),
-        @NamedQuery(name = "News.deleteList", query = "DELETE FROM News news WHERE news.id = :idList")
+        @NamedQuery(name = "News.deleteList", query = "DELETE FROM News news WHERE news.id = :idList"),
+        @NamedQuery(name = "News.countRows", query = "select count(*) FROM News")
 })
 @NamedNativeQueries({
         @NamedNativeQuery(name = "News.save", query = "INSERT INTO News(ID, TITLE, DATETIME, BRIEF, CONTENT) " +

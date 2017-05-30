@@ -25,6 +25,10 @@ public class NewsService {
     @Qualifier("HibernateNewsDao")
     private NewsDao newsDao;
 
+    public int getNewsNumber() {
+        return newsDao.countRowsNumber();
+    }
+
     public News readNews(Integer id) {
         return newsDao.read(id);
     }
@@ -56,5 +60,9 @@ public class NewsService {
 
     public List<News> readAllNewsByParameters(String title, Date from, Date to) {
        return newsDao.findByParameters(title, from, to);
+    }
+
+    public List<News> getNewsPaginated(int pageNumber, int pageSize) {
+        return newsDao.findPaginated(pageNumber, pageSize);
     }
 }
