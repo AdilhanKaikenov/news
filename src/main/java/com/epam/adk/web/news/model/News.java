@@ -29,6 +29,11 @@ import java.util.Date;
 @Table(name = "NEWS", schema = "ADKDB")
 public class News extends BaseEntity {
 
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NEWS_SEQ")
+    @SequenceGenerator(name = "NEWS_SEQ", sequenceName = "NEWS_SEQ", allocationSize = 1)
+    private int id;
     @Column(name = "TITLE")
     private String title;
 
@@ -42,6 +47,14 @@ public class News extends BaseEntity {
     private String content;
 
     public News() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
