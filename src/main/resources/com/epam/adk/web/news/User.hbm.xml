@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.epam.adk.web.news.model.User" table="USERS" schema="ADKDB">
+        <id name="id">
+            <column name="ID" sql-type="number(*)"/>
+            <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+                <param name="prefer_sequence_per_entity">true</param>
+                <param name="optimizer">none</param>
+                <param name="increment_size">1</param>
+                <param name="sequence_name">USERS_SEQ</param>
+            </generator>
+        </id>
+        <property name="login">
+            <column name="LOGIN" sql-type="varchar2(100 char)" length="100" not-null="true" unique="true"/>
+        </property>
+        <property name="password">
+            <column name="PASSWORD" sql-type="varchar2(100 char)" length="100" not-null="true"/>
+        </property>
+        <many-to-one name="role" lazy="false" column="ROLE_ID" class="com.epam.adk.web.news.model.Role" cascade="save-update"/>
+    </class>
+
+</hibernate-mapping>

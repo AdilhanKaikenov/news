@@ -13,8 +13,12 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
 
-        <!--<mapping resource="com/epam/adk/web/news/News.hbm.xml"/>-->
         <mapping class="com.epam.adk.web.news.model.News"/>
+        <mapping class="com.epam.adk.web.news.model.User"/>
+        <mapping class="com.epam.adk.web.news.model.Role"/>
+        <!--<mapping resource="com/epam/adk/web/news/News.hbm.xml"/>-->
+        <!--<mapping resource="com/epam/adk/web/news/User.hbm.xml"/>-->
+        <!--<mapping resource="com/epam/adk/web/news/Role.hbm.xml"/>-->
 
     </session-factory>
 
