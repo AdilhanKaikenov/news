@@ -25,7 +25,7 @@ import static com.epam.adk.web.news.util.ConstantHolder.*;
  */
 @Repository
 @Qualifier("HibernateJpaNewsDao")
-public class HibernateJpaNewsDao implements NewsDao {
+public class HibernateJpaNewsDao implements NewsDao, Dao<News> {
 
     @Autowired
     private SessionFactory sessionFactory;

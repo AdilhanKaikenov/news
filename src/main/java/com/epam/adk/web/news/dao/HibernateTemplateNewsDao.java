@@ -28,7 +28,7 @@ import static com.epam.adk.web.news.util.ConstantHolder.DATE_PROPERTY_NAME;
  */
 @Repository
 @Qualifier("HibernateTemplateNewsDao")
-public class HibernateTemplateNewsDao implements NewsDao {
+public class HibernateTemplateNewsDao implements NewsDao, Dao<News> {
 
     private static final String HQL_QUERY_SELECT_FROM_NEWS_ORDER_BY_DATE_DESC = "FROM News order by date desc";
     private static final String QUERY_SELECT_COUNT_FROM_NEWS = "select count(*) from News";

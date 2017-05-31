@@ -25,7 +25,7 @@ import static com.epam.adk.web.news.util.ConstantHolder.DATE_PROPERTY_NAME;
  */
 @Repository
 @Qualifier("HibernateNewsDao")
-public class HibernateNewsDao implements NewsDao {
+public class HibernateNewsDao implements NewsDao, Dao<News> {
 
     @Autowired
     private SessionFactory sessionFactory;
