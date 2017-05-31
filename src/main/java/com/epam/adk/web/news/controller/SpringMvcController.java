@@ -23,7 +23,7 @@ import java.util.List;
  * @author Kaikenov Adilkhan
  */
 @Controller
-public class SpringMVCController {
+public class SpringMvcController {
 
     private static final String DATE_PATTERN_YYYY_MM_DD = "yyyy-MM-dd";
 
@@ -47,6 +47,18 @@ public class SpringMVCController {
         modelAndView.addObject("newsList", newsList);
         modelAndView.setViewName("templates/pages/filtered-news");
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/admin/news/edit")
+    public ModelAndView editNews(HttpServletRequest request) {
+        String id = request.getParameter("id");
+        return new ModelAndView("redirect:/ShowPage.do?method=showNewsForm&id=" + id);
+    }
+
+    @RequestMapping(value = "/user/news/view")
+    public ModelAndView viewNews(HttpServletRequest request) {
+        String id = request.getParameter("id");
+        return new ModelAndView("redirect:/ShowPage.do?method=showViewNews&id=" + id);
     }
 
 }

@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Kaikenov Adilkhan
  */
-public interface RestCRUDController<T extends BaseEntity> {
+public interface RestCrudController<T extends BaseEntity> {
 
     ResponseEntity<T> create(T t);
 

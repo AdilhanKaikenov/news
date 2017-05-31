@@ -19,7 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/rest", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public class NewsRestController implements RestCRUDController<News> {
+public class NewsRestController implements RestCrudController<News> {
 
     @Autowired
     private NewsService newsService;
