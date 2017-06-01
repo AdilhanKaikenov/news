@@ -5,9 +5,11 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<c:set value="${pageContext.request.contextPath}" var="base"/>
+
 <html>
 <head>
-    <title>Criteria API</title>
+    <title>Filtered News List</title>
 </head>
 <body>
 
@@ -19,10 +21,10 @@
         <div class="date-section"><ftm:formatDate value="${news.date}"/></div>
         <div class="brief-section">${news.brief}</div>
         <div class="links-and-other-section">
-            <html:link styleClass="general-button" action="/ShowPage.do?method=showViewNews&id=${news.id}"><bean:message
-                    key="link.label.view"/></html:link> /
-            <html:link styleClass="general-button" action="/ShowPage.do?method=showNewsForm&id=${news.id}"><bean:message
-                    key="link.label.edit"/></html:link>
+            <a href="${base}/user/news/view?id=${news.id}" class="general-button"><bean:message
+                    key="link.label.view"/></a>/
+            <a href="${base}/admin/news/edit?id=${news.id}" class="general-button"><bean:message
+                    key="link.label.edit"/></a>
         </div>
     </div>
 </c:forEach>

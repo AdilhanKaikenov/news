@@ -19,8 +19,10 @@
     </definition>
 
     <!--Bodies-->
+    <definition name="access.denied.403" page="/WEB-INF/jsp/templates/bodies/403-body.jsp"/>
     <definition name="news.list" page="/WEB-INF/jsp/templates/bodies/news-list-body.jsp"/>
     <definition name="news.view" page="/WEB-INF/jsp/templates/bodies/news-view-body.jsp"/>
     <definition name="news.edit" page="/WEB-INF/jsp/templates/bodies/add-edit-news-body.jsp"/>
+    <definition name="login" page="/WEB-INF/jsp/templates/bodies/login-body.jsp"/>
 
 </tiles-definitions>

@@ -4,6 +4,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <c:set value="${pageContext.request.contextPath}" var="base"/>
 
@@ -47,22 +48,25 @@
                         key="link.label.view"/></a>/
                 <a href="${base}/admin/news/edit?id=${news.id}" class="general-button"><bean:message
                         key="link.label.edit"/></a>
-                <html:multibox property="selectedNewsIds" value="${news.id}"/>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <html:multibox property="selectedNewsIds" value="${news.id}"/>
+                </sec:authorize>
             </div>
         </div>
 
     </logic:iterate>
-    <div class="delete-button-section">
-
+    <sec:authorize access="hasRole('ROLE_ADMIN')">
+        <div class="delete-button-section">
         <logic:notEmpty name="NewsForm" property="newsList">
             <html:submit styleClass="general-button" onclick="return deleteNewsList()"><bean:message
                     key="delete.label.button.submit"/></html:submit>
         </logic:notEmpty>
+    </sec:authorize>
 
-        <script type="text/javascript">
-            function deleteNewsList() {
-                return window.confirm('<bean:message key="confirm.message.delete.newslist"/>');
-            }
-        </script>
+    <script type="text/javascript">
+        function deleteNewsList() {
+            return window.confirm('<bean:message key="confirm.message.delete.newslist"/>');
+        }
+    </script>
     </div>
 </html:form>
