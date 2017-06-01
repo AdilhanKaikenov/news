@@ -14,7 +14,7 @@
     </div>
 
     <div class="menu_references">
-        <br><a href="${base}/ShowPage.do?method=showNewsForm"><bean:message key="link.menu.label.addnews"/></a>
+        <br><a href="${base}/admin/news/"><bean:message key="link.menu.label.addnews"/></a>
         <br><a href="${base}/ShowPage.do?method=showNewsList"><bean:message key="link.menu.label.newslist"/></a>
         <sec:authorize access="isAnonymous()">
             <br><a href="${base}/login"><bean:message key="link.label.menu.login"/></a>

@@ -44,9 +44,9 @@
             <div class="date-section"><ftm:formatDate value="${news.date}"/></div>
             <div class="brief-section">${news.brief}</div>
             <div class="links-and-other-section">
-                <a href="${base}/user/news/view?id=${news.id}" class="general-button"><bean:message
+                <a href="${base}/user/news/view/${news.id}" class="general-button"><bean:message
                         key="link.label.view"/></a>/
-                <a href="${base}/admin/news/edit?id=${news.id}" class="general-button"><bean:message
+                <a href="${base}/admin/news/${news.id}" class="general-button"><bean:message
                         key="link.label.edit"/></a>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <html:multibox property="selectedNewsIds" value="${news.id}"/>

@@ -6,6 +6,7 @@ import com.epam.adk.web.news.service.NewsService;
 import com.epam.adk.web.news.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,7 +42,7 @@ public class SpringMvcController {
             from = DateUtil.parseStringToDate(request.getParameter("from"), DATE_PATTERN_YYYY_MM_DD);
             to = DateUtil.parseStringToDate(request.getParameter("to"), DATE_PATTERN_YYYY_MM_DD);
         } catch (DateParsingException e) {
-                System.out.println(MessageFormat.format("Error: {0}", e));
+            System.out.println(MessageFormat.format("Error: {0}", e));
         }
         List<News> newsList = newsService.readAllNewsByParameters(title, from, to);
         ModelAndView modelAndView = new ModelAndView();
@@ -50,19 +51,22 @@ public class SpringMvcController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/admin/news/edit", method = RequestMethod.GET)
-    public ModelAndView editNews(HttpServletRequest request) {
-        String id = request.getParameter("id");
+    @RequestMapping(value = "/admin/news/", method = RequestMethod.GET)
+    public ModelAndView addNews() {
+        return new ModelAndView("redirect:/ShowPage.do?method=showNewsForm");
+    }
+
+    @RequestMapping(value = "/admin/news/{id}", method = RequestMethod.GET)
+    public ModelAndView editNews(@PathVariable("id") int id) {
         return new ModelAndView("redirect:/ShowPage.do?method=showNewsForm&id=" + id);
     }
 
-    @RequestMapping(value = "/user/news/view", method = RequestMethod.GET)
-    public ModelAndView viewNews(HttpServletRequest request) {
-        String id = request.getParameter("id");
+    @RequestMapping(value = "/user/news/view/{id}", method = RequestMethod.GET)
+    public ModelAndView viewNews(@PathVariable("id") int id) {
         return new ModelAndView("redirect:/ShowPage.do?method=showViewNews&id=" + id);
     }
 
-    @RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
+    @RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView login(
             @RequestParam(value = "error", required = false) String error,
             @RequestParam(value = "logout", required = false) String logout
