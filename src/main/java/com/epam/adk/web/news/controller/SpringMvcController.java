@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,16 +50,40 @@ public class SpringMvcController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/admin/news/edit")
+    @RequestMapping(value = "/admin/news/edit", method = RequestMethod.GET)
     public ModelAndView editNews(HttpServletRequest request) {
         String id = request.getParameter("id");
         return new ModelAndView("redirect:/ShowPage.do?method=showNewsForm&id=" + id);
     }
 
-    @RequestMapping(value = "/user/news/view")
+    @RequestMapping(value = "/user/news/view", method = RequestMethod.GET)
     public ModelAndView viewNews(HttpServletRequest request) {
         String id = request.getParameter("id");
         return new ModelAndView("redirect:/ShowPage.do?method=showViewNews&id=" + id);
     }
 
+    @RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
+    public ModelAndView login(
+            @RequestParam(value = "error", required = false) String error,
+            @RequestParam(value = "logout", required = false) String logout
+    ) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        if (error != null) {
+            modelAndView.addObject("error", "msg.invalid.auth");
+        }
+
+        if (logout != null) {
+            modelAndView.addObject("msg", "msg.logout.success");
+        }
+
+        modelAndView.setViewName("templates/pages/login");
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/403/", method = RequestMethod.GET)
+    public ModelAndView denyAccess() {
+        return new ModelAndView("templates/pages/access-denied-403");
+    }
 }
