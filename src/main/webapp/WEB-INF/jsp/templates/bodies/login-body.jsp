@@ -15,7 +15,7 @@
         <div class="login-msg"><bean:message key="${msg}"/></div>
     </c:if>
 
-    <form action="/login" method="post">
+    <form action="${pageContext.request.contextPath}/login" method="post">
 
         <table>
             <tr>
