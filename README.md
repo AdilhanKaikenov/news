@@ -7,6 +7,8 @@ Project for practice.
 * Hibernate: 
 1. Object-Relational Mapping (ORM)
  2. Java Persistence API (JPA)
+ 3. Criteria API
+ 4. Named Query
 * Build management: Maven 3.3.9
 * Frontend part: 
 1. JSP
