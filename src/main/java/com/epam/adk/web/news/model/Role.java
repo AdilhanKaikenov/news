@@ -10,7 +10,7 @@ import javax.persistence.*;
  * @author Kaikenov Adilkhan
  */
 @Entity
-@Table(name = "ROLES", schema = "ADKDB")
+@Table(name = "ROLES")
 public class Role extends BaseEntity{
 
     @Id

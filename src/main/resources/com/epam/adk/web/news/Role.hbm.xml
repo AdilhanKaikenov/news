@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.epam.adk.web.news.model.Role" table="ROLES" schema="ADKDB">
+    <class name="com.epam.adk.web.news.model.Role" table="ROLES">
         <id name="id">
             <column name="ID" sql-type="number(*)"/>
             <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">

@@ -26,7 +26,7 @@ import java.util.Date;
 })
 @XmlRootElement(name = "news")
 @Entity
-@Table(name = "NEWS", schema = "ADKDB")
+@Table(name = "NEWS")
 public class News extends BaseEntity {
 
     @Id
