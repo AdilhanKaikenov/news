@@ -38,11 +38,15 @@
         <cxf-rt.version>3.1.11</cxf-rt.version>
         <!--Spring Security-->
         <spring-security-version>4.2.2.RELEASE</spring-security-version>
+        <!--Apache Commons-->
+        <commons-dbcp2.version>2.1.1</commons-dbcp2.version>
+        <commons-pool2.version>2.4.2</commons-pool2.version>
 
         <antlr.version>2.7.7</antlr.version>
         <hibernate-validator.version>5.4.0.Final</hibernate-validator.version>
         <jaxws-api.version>2.2.9</jaxws-api.version>
         <hsqldb.version>2.3.1</hsqldb.version>
+
     </properties>
 
     <dependencies>
@@ -71,6 +75,18 @@
             <artifactId>spring-test-dbunit</artifactId>
             <version>${spring-test-dbunit.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <!--Apache Commons-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>${commons-dbcp2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>${commons-pool2.version}</version>
         </dependency>
 
         <dependency>
