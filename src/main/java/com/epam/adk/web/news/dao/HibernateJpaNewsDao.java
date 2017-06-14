@@ -2,14 +2,12 @@ package com.epam.adk.web.news.dao;
 
 import com.epam.adk.web.news.model.News;
 import org.hibernate.Query;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -45,13 +43,7 @@ public class HibernateJpaNewsDao implements NewsDao, Dao<News> {
 
     @Override
     public int save(News news) {
-        Session session = getSession();
-        Query query = session.getNamedQuery(NAMED_QUERY_NEWS_SAVE);
-        setNewsQueryParameters(news, query);
-        query.executeUpdate();
-        int id = getAutoIncrementedID(session);
-        news.setId(id);
-        return id;
+       return (int) getSession().save(news);
     }
 
     @Override
@@ -112,11 +104,6 @@ public class HibernateJpaNewsDao implements NewsDao, Dao<News> {
         query.setParameter(BRIEF_PARAMETER, news.getBrief());
         query.setParameter(DATETIME_PARAMETER, news.getDate());
         query.setParameter(CONTENT_PARAMETER, news.getContent());
-    }
-
-    private int getAutoIncrementedID(Session session) {
-        SQLQuery query = session.createSQLQuery(SELECT_LAST_INSERTED_ID);
-        return ((BigDecimal) query.list().get(ZERO)).intValue();
     }
 
     @Override

@@ -19,8 +19,6 @@ import java.util.Date;
         @NamedQuery(name = "News.countRows", query = "select count(*) FROM News")
 })
 @NamedNativeQueries({
-        @NamedNativeQuery(name = "News.save", query = "INSERT INTO News(ID, TITLE, DATETIME, BRIEF, CONTENT) " +
-                "VALUES (NEWS_SEQ.nextval, :title, :datetime, :brief, :content)"),
         @NamedNativeQuery(name = "News.update", query = "UPDATE News SET title = :title, datetime = :datetime," +
                 "brief = :brief, content = :content WHERE id = :id")
 })

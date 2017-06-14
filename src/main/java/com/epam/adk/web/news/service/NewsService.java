@@ -22,7 +22,7 @@ import java.util.List;
 public class NewsService {
 
     @Autowired
-    @Qualifier("HibernateNewsDao")
+    @Qualifier("HibernateJpaNewsDao")
     private NewsDao newsDao;
 
     public int getNewsNumber() {
