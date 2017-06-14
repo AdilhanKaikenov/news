@@ -18,3 +18,4 @@ Project for practice.
 1. Simple Object Access Protocol (SOAP)
 2. Representational State Transfer (REST)
 * Oracle Database 
+* JUnit 4
