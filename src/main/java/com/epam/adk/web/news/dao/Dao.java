@@ -17,11 +17,7 @@ public interface Dao<T extends BaseEntity> {
 
     T read(int id);
 
-    int save(T t);
-
-    void saveOrUpdate(T t);
-
-    void update(T t);
+    T save(T t);
 
     List<T> findPaginated(int pageNumber, int pageSize);
 

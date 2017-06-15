@@ -46,21 +46,11 @@ public class HibernateTemplateNewsDao implements NewsDao, Dao<News> {
         return hibernateTemplate.get(News.class, id);
     }
 
-    @Transactional
     @Override
-    public int save(News news) {
-        return (int) hibernateTemplate.save(news);
-    }
-
     @Transactional
-    @Override
-    public void saveOrUpdate(News news) {
+    public News save(News news) {
         hibernateTemplate.saveOrUpdate(news);
-    }
-
-    @Override
-    public void update(News news) {
-        hibernateTemplate.update(news);
+        return news;
     }
 
     @Override

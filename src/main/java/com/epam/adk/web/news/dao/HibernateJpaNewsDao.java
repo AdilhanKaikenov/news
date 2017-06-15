@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,6 +24,7 @@ import static com.epam.adk.web.news.util.ConstantHolder.*;
  */
 @Repository
 @Qualifier("HibernateJpaNewsDao")
+@Transactional
 public class HibernateJpaNewsDao implements NewsDao, Dao<News> {
 
     @Autowired
@@ -42,25 +44,16 @@ public class HibernateJpaNewsDao implements NewsDao, Dao<News> {
     }
 
     @Override
-    public int save(News news) {
-       return (int) getSession().save(news);
-    }
-
-    @Override
-    public void saveOrUpdate(News news) {
+    public News save(News news) {
         if ((news.getId() == ZERO)) {
-            save(news);
+            getSession().save(news);
         } else {
-            update(news);
+            Query query = getSession().getNamedQuery(NAMED_QUERY_NEWS_UPDATE);
+            setNewsQueryParameters(news, query);
+            query.setParameter(ID_PARAMETER, news.getId());
+            query.executeUpdate();
         }
-    }
-
-    @Override
-    public void update(News news) {
-        Query query = getSession().getNamedQuery(NAMED_QUERY_NEWS_UPDATE);
-        setNewsQueryParameters(news, query);
-        query.setParameter(ID_PARAMETER, news.getId());
-        query.executeUpdate();
+        return news;
     }
 
     @Override

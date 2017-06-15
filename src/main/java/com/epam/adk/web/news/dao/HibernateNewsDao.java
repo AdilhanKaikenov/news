@@ -42,20 +42,11 @@ public class HibernateNewsDao implements NewsDao, Dao<News> {
         return (News) sessionFactory.getCurrentSession().get(News.class, id);
     }
 
+    @Override
     @Transactional
-    @Override
-    public int save(News news) {
-        return (int) sessionFactory.getCurrentSession().save(news);
-    }
-
-    @Override
-    public void saveOrUpdate(News news) {
+    public News save(News news) {
         sessionFactory.getCurrentSession().saveOrUpdate(news);
-    }
-
-    @Override
-    public void update(News news) {
-        sessionFactory.getCurrentSession().update(news);
+        return news;
     }
 
     @Override
