@@ -15,11 +15,11 @@ import java.util.List;
 @WebService
 public interface SoapWebService<T extends BaseEntity> {
 
-    int create(T t);
+    T create(T t);
 
     T read(int id);
 
-    void update(T t);
+    T update(T t);
 
     void delete(int id);
 

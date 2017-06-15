@@ -24,8 +24,8 @@ public class NewsSoapWebService implements SoapWebService<News> {
 
     @WebMethod
     @Override
-    public int create(News news) {
-        return newsService.addNews(news);
+    public News create(News news) {
+        return newsService.saveOrEditNews(news);
     }
 
     @WebMethod
@@ -36,8 +36,9 @@ public class NewsSoapWebService implements SoapWebService<News> {
 
     @WebMethod
     @Override
-    public void update(News news) {
-        newsService.updateNews(news);
+    public News update(News news) {
+        newsService.saveOrEditNews(news);
+        return news;
     }
 
     @WebMethod
