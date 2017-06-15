@@ -87,4 +87,38 @@ public class News extends BaseEntity {
         this.content = content;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        News news = (News) o;
+
+        if (id != news.id) return false;
+        if (!title.equals(news.title)) return false;
+        if (!date.equals(news.date)) return false;
+        if (!brief.equals(news.brief)) return false;
+        return content.equals(news.content);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + title.hashCode();
+        result = 31 * result + date.hashCode();
+        result = 31 * result + brief.hashCode();
+        result = 31 * result + content.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", date=" + date +
+                ", brief='" + brief + '\'' +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }
