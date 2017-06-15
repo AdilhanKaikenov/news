@@ -48,7 +48,6 @@ public class HibernateJpaNewsDaoTest {
 
         final int expectedRowsNum = 3;
         int rowsNumber = newsDao.countRowsNumber();
-        System.out.println("Number of rows: " + rowsNumber);
         assertEquals(expectedRowsNum, rowsNumber);
     }
 
@@ -57,7 +56,6 @@ public class HibernateJpaNewsDaoTest {
     public void tetRead() throws Exception {
 
         final int testID = 2;
-
         News testNews = newsDao.read(testID);
 
         assertNotNull(testNews); // Assert Check Not Null
@@ -80,12 +78,11 @@ public class HibernateJpaNewsDaoTest {
 
     @Test
     @DatabaseSetup(value = "/newsTestDatabase.xml")
-    @ExpectedDatabase(value = "/testUpdate.xml", table = "NEWS")
+    @ExpectedDatabase(value = "/testNewsUpdateDatabase.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
     public void testUpdate() throws Exception {
 
         final int testID = 2;
         News testNews = newsDao.read(testID);
-
         assertNotNull(testNews); // Assert Check Not Null
 
         News editedNews = new News();
@@ -107,13 +104,11 @@ public class HibernateJpaNewsDaoTest {
 
     @Test
     @DatabaseSetup(value = "/newsTestDatabase.xml")
-    @ExpectedDatabase(value = "/testDelete.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
+    @ExpectedDatabase(value = "/testNewsDeleteDatabase.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
     public void testDelete() throws Exception {
-
         final int targetID = 3;
         News news = newsDao.read(targetID);
         newsDao.delete(news);
-
     }
 
     private News getTestNewsInstance() {
