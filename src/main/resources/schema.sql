@@ -7,7 +7,7 @@ DROP SEQUENCE IF EXISTS USERS_SEQ;
 
 -- create table News
 CREATE TABLE NEWS (
-  ID NUMBER not null,
+  ID INT PRIMARY KEY not null,
   TITLE VARCHAR2(120 CHAR) not null,
   DATETIME DATE not null,
   BRIEF VARCHAR2(700 CHAR) not null,
