@@ -2,9 +2,12 @@ package com.epam.adk.web.testnews.dao;
 
 import com.epam.adk.web.news.dao.NewsDao;
 import com.epam.adk.web.news.model.News;
+import com.epam.adk.web.news.util.DateUtil;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.ExpectedDatabase;
+import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +18,10 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 /**
  * TODO: Comment
@@ -33,9 +34,8 @@ import static org.junit.Assert.assertNotNull;
 @ContextConfiguration(locations = "classpath:test-spring-context.xml") // Indicates which XML files contain the ApplicationContext.
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class,
         DbUnitTestExecutionListener.class, TransactionDbUnitTestExecutionListener.class})
-@Transactional
 @DirtiesContext // Annotate @DirtiesContext to indicate that it dirties the ApplicationContext. This will trigger context reloading before execution of next test.
-@DatabaseSetup(value = "/newsTestDatabase.xml") // The @DatabaseSetup annotation can be used to configure database table before tests execute and reset them once tests have completed.
+// The @DatabaseSetup annotation can be used to configure database table before tests execute and reset them once tests have completed.
 public class HibernateJpaNewsDaoTest {
 
     @Autowired
@@ -43,71 +43,76 @@ public class HibernateJpaNewsDaoTest {
     private NewsDao newsDao;
 
     @Test
+    @DatabaseSetup(value = "/newsTestDatabase.xml")
+    public void testCountRowsNumber() throws Exception {
 
-    public void countRowsNumber() throws Exception {
+        final int expectedRowsNum = 3;
+        int rowsNumber = newsDao.countRowsNumber();
+        System.out.println("Number of rows: " + rowsNumber);
+        assertEquals(expectedRowsNum, rowsNumber);
     }
 
     @Test
-    public void read() throws Exception {
+    @DatabaseSetup(value = "/newsTestDatabase.xml")
+    public void tetRead() throws Exception {
 
-        final int testID = 1;
+        final int testID = 2;
 
         News testNews = newsDao.read(testID);
-        System.out.println(testNews.getTitle());
-        assertNotNull(testNews); // Assert Check
+
+        assertNotNull(testNews); // Assert Check Not Null
     }
 
     @Test
-    public void save() throws Exception {
+    public void testSave() throws Exception {
 
         News testNews = getTestNewsInstance();
 
         final int nullID = 0;
-        assertEquals(nullID, testNews.getId()); // Assert Check
+        assertEquals(nullID, testNews.getId()); // Assert Check Equals
 
-        System.out.println(testNews.getId());
         newsDao.save(testNews);
-        System.out.println(testNews.getId());
+
         News savedNews = newsDao.read(testNews.getId());
 
-        System.out.println(testNews.getTitle());
-        System.out.println(savedNews.getTitle());
-
-        assertEquals(savedNews.getId(), testNews.getId()); // Assert Check
+        assertEquals(savedNews.getId(), testNews.getId()); // Assert Check Equals
     }
 
     @Test
-    public void saveOrUpdate() throws Exception {
+    @DatabaseSetup(value = "/newsTestDatabase.xml")
+    @ExpectedDatabase(value = "/testUpdate.xml", table = "NEWS")
+    public void testUpdate() throws Exception {
 
-    }
+        final int testID = 2;
+        News testNews = newsDao.read(testID);
 
-    @Test
-    public void update() throws Exception {
+        assertNotNull(testNews); // Assert Check Not Null
 
-    }
+        News editedNews = new News();
+        editedNews.setId(testID);
+        editedNews.setTitle("Edited News Title");
+        editedNews.setDate(DateUtil.parseStringToDate("1994/08/26"));
+        editedNews.setBrief("Edited News Brief");
+        editedNews.setContent("Edited News Content");
 
-    @Test
-    public void findPaginated() throws Exception {
+        assertNotEquals(testNews, editedNews); // Assert Check Not Equals
 
-    }
+        newsDao.save(editedNews);
 
-    @Test
-    public void findAll() throws Exception {
+        News result = newsDao.read(testID);
 
-    }
-
-    @Test
-    public void delete() throws Exception {
-
-    }
-
-    @Test
-    public void deleteAll() throws Exception {
+        assertEquals(editedNews, result); // Assert Check Equals
 
     }
 
     @Test
-    public void findByParameters() throws Exception {
+    @DatabaseSetup(value = "/newsTestDatabase.xml")
+    @ExpectedDatabase(value = "/testDelete.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
+    public void testDelete() throws Exception {
+
+        final int targetID = 3;
+        News news = newsDao.read(targetID);
+        newsDao.delete(news);
 
     }
 

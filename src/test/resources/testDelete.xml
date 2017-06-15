@@ -7,12 +7,6 @@
             BRIEF="Test Brief #1"
             CONTENT="Test Content #1"/>
     <NEWS
-            ID="3"
-            TITLE="Test Title #2"
-            DATETIME="1998-07-05 02:02:02"
-            BRIEF="Test Brief #2"
-            CONTENT="Test Content #2"/>
-    <NEWS
             ID="4"
             TITLE="Test Title #3"
             DATETIME="1967-02-18 03:03:03"
