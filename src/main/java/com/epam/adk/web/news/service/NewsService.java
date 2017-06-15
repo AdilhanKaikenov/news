@@ -33,16 +33,8 @@ public class NewsService {
         return newsDao.read(id);
     }
 
-    public int addNews(News news) {
+    public News saveOrEditNews(News news) {
         return newsDao.save(news);
-    }
-
-    public void addOrEditNews(News news) {
-        newsDao.saveOrUpdate(news);
-    }
-
-    public void updateNews(News news) {
-        newsDao.update(news);
     }
 
     public List<News> readAllNews() {

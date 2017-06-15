@@ -32,7 +32,7 @@ public class NewsRestController implements RestCrudController<News> {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
-        newsService.addNews(news);
+        newsService.saveOrEditNews(news);
 
         return new ResponseEntity<>(news, HttpStatus.CREATED);
     }
@@ -68,7 +68,7 @@ public class NewsRestController implements RestCrudController<News> {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        newsService.updateNews(news);
+        newsService.saveOrEditNews(news);
 
         return new ResponseEntity<>(news, HttpStatus.OK);
     }

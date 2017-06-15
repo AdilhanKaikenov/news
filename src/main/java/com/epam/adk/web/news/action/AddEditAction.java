@@ -37,7 +37,7 @@ public class AddEditAction extends Action {
         String strDate = newsForm.getStrDate();
         news.setDate(DateUtil.parseStringToDate(strDate));
 
-        newsService.addOrEditNews(news);
+        newsService.saveOrEditNews(news);
 
         request.setAttribute(NEWS, news);
 
