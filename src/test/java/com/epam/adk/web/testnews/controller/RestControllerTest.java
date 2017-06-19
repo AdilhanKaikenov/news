@@ -8,6 +8,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.ExpectedDatabase;
+import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,9 +29,10 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.Date;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertNull;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 /**
  * TODO: Comment
  * <p>
@@ -60,19 +63,14 @@ public class RestControllerTest {
 
     @Test
     @DatabaseSetup(value = "/newsTestDatabase.xml")
-    public void createTest() throws Exception {
+    public void testCreate() throws Exception {
 
         final int expectedID = 1;
-        final long dateTime = 777834000000L;
 
-        News news = new News();
-        news.setTitle("News Test Title");
-        news.setDate(new Date(dateTime));
-        news.setBrief("News Test Brief");
-        news.setContent("News Test Content");
+        News news = getTestNewsInstance();
 
         News noExistNews = newsService.readNews(expectedID);
-        assertNull(noExistNews);
+        assertNull(noExistNews); // Assert Check Null
 
         mockMvc.perform(post("/rest/news")
                 .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -82,10 +80,74 @@ public class RestControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.id", is(expectedID)))
                 .andExpect(jsonPath("$.title", is("News Test Title")))
-                .andExpect(jsonPath("$.date", is(dateTime)))
+                .andExpect(jsonPath("$.date", is(news.getDate().getTime())))
                 .andExpect(jsonPath("$.brief", is("News Test Brief")))
                 .andExpect(jsonPath("$.content", is("News Test Content")));
+    }
 
+    @Test
+    @DatabaseSetup(value = "/newsTestDatabase.xml")
+    public void testRead() throws Exception {
+
+        final int targetID = 2;
+        final long dateTime = 777837661000L;
+
+        mockMvc.perform(get("/rest/news/{id}", targetID)
+                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+        )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(targetID)))
+                .andExpect(jsonPath("$.title", is("Test Title #2")))
+                .andExpect(jsonPath("$.date", is(dateTime)))
+                .andExpect(jsonPath("$.brief", is("Test Brief #2")))
+                .andExpect(jsonPath("$.content", is("Test Content #2")));
+    }
+
+    @Test
+    @DatabaseSetup(value = "/newsTestDatabase.xml")
+    public void testUpdate() throws Exception {
+
+        final int targetID = 3;
+
+        News edited = getTestNewsInstance();
+        News original = newsService.readNews(targetID);
+
+        assertNotNull(original); // Assert Check Not Null
+        assertNotEquals(edited, original); // Assert Check Not Equals
+
+        edited.setId(targetID);
+
+        mockMvc.perform(put("/rest/news/")
+                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                .content(convertObjectToJson(edited))
+        )
+                .andExpect(status().isOk());
+
+        News result = newsService.readNews(targetID);
+        assertEquals(edited, result); // Assert Check Null
+    }
+
+    @Test
+    @DatabaseSetup(value = "/newsTestDatabase.xml")
+    @ExpectedDatabase(value = "/testNewsDeleteDatabase.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
+    public void testDelete() throws Exception {
+
+        final int targetID = 3;
+
+        mockMvc.perform(delete("/rest/news/{id}", targetID))
+                .andExpect(status().isOk());
+
+    }
+
+    private News getTestNewsInstance() {
+        final long dateTime = 777834000000L;
+
+        News news = new News();
+        news.setTitle("News Test Title");
+        news.setDate(new Date(dateTime));
+        news.setBrief("News Test Brief");
+        news.setContent("News Test Content");
+        return news;
     }
 
     private byte[] convertObjectToJson(Object object) throws JsonProcessingException {
@@ -93,5 +155,4 @@ public class RestControllerTest {
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         return mapper.writeValueAsBytes(object);
     }
-
 }
