@@ -53,7 +53,7 @@ public class HibernateJpaNewsDaoTest {
 
     @Test
     @DatabaseSetup(value = "/newsTestDatabase.xml")
-    public void tetRead() throws Exception {
+    public void testRead() throws Exception {
 
         final int testID = 2;
         News testNews = newsDao.read(testID);
