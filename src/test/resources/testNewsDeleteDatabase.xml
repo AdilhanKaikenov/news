@@ -2,14 +2,14 @@
 <dataset>
     <NEWS
             ID="2"
-            TITLE="Test Title #1"
+            TITLE="Test Title #2"
             DATETIME="1994-08-26 01:01:01"
-            BRIEF="Test Brief #1"
-            CONTENT="Test Content #1"/>
+            BRIEF="Test Brief #2"
+            CONTENT="Test Content #2"/>
     <NEWS
             ID="4"
-            TITLE="Test Title #3"
+            TITLE="Test Title #4"
             DATETIME="1967-02-18 03:03:03"
-            BRIEF="Test Brief #3"
-            CONTENT="Test Content #3"/>
+            BRIEF="Test Brief #4"
+            CONTENT="Test Content #4"/>
 </dataset>
