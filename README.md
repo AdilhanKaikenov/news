@@ -18,4 +18,8 @@ Project for practice.
 1. Simple Object Access Protocol (SOAP)
 2. Representational State Transfer (REST)
 * Oracle Database 
+
+Test:
 * JUnit 4
+* Spring Integration Test REST API
+* Testing Controllers with MockMvc
