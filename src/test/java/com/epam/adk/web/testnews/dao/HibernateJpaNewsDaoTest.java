@@ -1,6 +1,7 @@
 package com.epam.adk.web.testnews.dao;
 
 import com.epam.adk.web.news.dao.NewsDao;
+import com.epam.adk.web.news.exception.DateParsingException;
 import com.epam.adk.web.news.model.News;
 import com.epam.adk.web.news.util.DateUtil;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
@@ -19,9 +20,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 
-import java.util.Date;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * TODO: Comment
@@ -62,6 +62,8 @@ public class HibernateJpaNewsDaoTest {
     }
 
     @Test
+    @DatabaseSetup(value = "/newsTestDatabase.xml")
+    @ExpectedDatabase(value = "/testNewsSaveDatabase.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
     public void testSave() throws Exception {
 
         News testNews = getTestNewsInstance();
@@ -71,9 +73,6 @@ public class HibernateJpaNewsDaoTest {
 
         newsDao.save(testNews);
 
-        News savedNews = newsDao.read(testNews.getId());
-
-        assertEquals(savedNews.getId(), testNews.getId()); // Assert Check Equals
     }
 
     @Test
@@ -82,8 +81,6 @@ public class HibernateJpaNewsDaoTest {
     public void testUpdate() throws Exception {
 
         final int testID = 2;
-        News testNews = newsDao.read(testID);
-        assertNotNull(testNews); // Assert Check Not Null
 
         News editedNews = new News();
         editedNews.setId(testID);
@@ -92,14 +89,7 @@ public class HibernateJpaNewsDaoTest {
         editedNews.setBrief("Edited News Brief");
         editedNews.setContent("Edited News Content");
 
-        assertNotEquals(testNews, editedNews); // Assert Check Not Equals
-
         newsDao.save(editedNews);
-
-        News result = newsDao.read(testID);
-
-        assertEquals(editedNews, result); // Assert Check Equals
-
     }
 
     @Test
@@ -107,14 +97,15 @@ public class HibernateJpaNewsDaoTest {
     @ExpectedDatabase(value = "/testNewsDeleteDatabase.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
     public void testDelete() throws Exception {
         final int targetID = 3;
-        News news = newsDao.read(targetID);
+        News news = new News();
+        news.setId(targetID);
         newsDao.delete(news);
     }
 
-    private News getTestNewsInstance() {
+    private News getTestNewsInstance() throws DateParsingException {
         News news = new News();
         news.setTitle("Test News Title");
-        news.setDate(new Date());
+        news.setDate(DateUtil.parseStringToDate("1994/08/26"));
         news.setBrief("Test News Brief");
         news.setContent("Test News Content");
         return news;
