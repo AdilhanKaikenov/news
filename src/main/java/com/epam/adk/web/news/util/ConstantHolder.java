@@ -24,6 +24,9 @@ public final class ConstantHolder {
     public static final String DATETIME_PARAMETER = "datetime";
     public static final String CONTENT_PARAMETER = "content";
 
+    public static final String LOGIN = "login";
+    public static final String PASSWORD = "password";
+
     public static final int ZERO = 0;
 
     public static final String SELECT_LAST_INSERTED_ID = "SELECT NEWS_SEQ.currval FROM dual";

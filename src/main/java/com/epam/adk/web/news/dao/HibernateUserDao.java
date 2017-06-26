@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static com.epam.adk.web.news.util.ConstantHolder.LOGIN;
+import static com.epam.adk.web.news.util.ConstantHolder.PASSWORD;
+
 /**
  * TODO: Comment
  * <p>
@@ -28,8 +31,8 @@ public class HibernateUserDao implements UserDao {
     public User findByAuth(String login, String password) {
 
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
-        criteria.add(Restrictions.eq("login", login));
-        criteria.add(Restrictions.eq("password", password));
+        criteria.add(Restrictions.eq(LOGIN, login));
+        criteria.add(Restrictions.eq(PASSWORD, password));
         List<User> userList = criteria.list();
         return userList.isEmpty() ? null : userList.iterator().next() ;
     }
